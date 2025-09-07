@@ -77,125 +77,6 @@ classDiagram
 
 ## Domain Model and Structure
 
-### Explanation of the Classes and Relationships
-
-#### User (abstract)
-- **Base for users**, with role-based inheritance.
-- **Attributes:**  
-  - `id`, `username`, `email`, `passwordHash`, `role`
-- **Inheritance:**  
-  - `Customer`, `Admin` (JPA inheritance).
-
-#### Customer
-- **Extra attributes:**
-  - `profileImageUrl`: User's profile image URL.
-  - `preferredLanguage`: User's preferred language (enum `PreferredLanguage`, e.g. ES, EN, FR...).
-  - `isVerified`: Boolean for verification status.
-
-#### Admin
-- **Extra attributes:**
-  - `adminLevel`: Admin level (integer, higher = more privileges).
-  - `department`: Admin's department (enum `Department`, e.g. IT, HR, SUPPORT...).
-  - `departmentImageUrl`: Profile image based on department.
-  - `lastLogin`: Last login date/time.
-
-#### Asset
-- Represents the **base 3D asset** (t-shirt, mug, etc.).
-- **Attributes:**  
-  - `id`, `name`, `description`, `glbPath`, `thumbnailDefault`
-  - `partsConfigJson`: JSON with customizable parts definition (e.g. `{ "neck": {...}, "right_sleeve": {...} }`)
-  - **Relation:**  
-    - `design`: Unique base design associated with the asset (`Design`).
-
-#### Scene
-- Represents the **3D scene** (camera, lights, loaded asset, etc.).
-- **Attributes:**  
-  - `id`, `name`, `lightingConfigJson`, `cameraConfigJson`, `thumbnail`, `createdAt`, `updatedAt`
-  - `owner`: Scene's owner user.
-  - **Relation:**  
-    - `design`: Design shown in the scene, associated and customized.
-
-#### Design
-- **Customization** of an asset (texture, colors, materials, logos/texts).
-- **Attributes:**  
-  - `id`, `name`
-  - `textureMapUrl`: Custom base texture (UV).
-  - `materialsJson`, `partsColorsJson`, `logoConfigJson`, `textConfigJson`: JSONs with materials, colors, logo, and text data.
-  - **Relation:**  
-    - `asset`: Base asset being customized (1:1).
-
----
-
-<details>
-<summary><strong>Enums</strong></summary>
-
-**Part** (customizable parts, per asset)
-```java
-public enum Part {
-    PECHO,
-    PECHO_IZQ,
-    ESPALDA,
-    ESPALDA_NUCA,
-    MANGA_DCHA,
-    MANGA_IZQ,
-    CUELLO,
-    ASA,
-    BASE,
-    INTERIOR,
-    LATERAL_DCHA,
-    LATERAL_IZQ
-}
-```
-
-**MaterialType** (available materials)
-```java
-public enum MaterialType {
-    ALGODON,
-    POLIESTER,
-    LANA,
-    CUERO,
-    CERAMICA,
-    PLASTICO,
-    METAL,
-    NYLON,
-    SEDA,
-    VAQUERO,
-    PORCELANA,
-    GOMA,
-    MADERA
-}
-```
-
-**PreferredLanguage** (supported user languages)
-```java
-public enum PreferredLanguage {
-    ES,     // Spanish
-    EN,     // English
-    FR,     // French
-    DE,     // German
-    IT,     // Italian
-    PT,     // Portuguese
-    // Add more as needed
-}
-```
-
-**Department** (admin departments)
-```java
-public enum Department {
-    IT,
-    HR,
-    SUPPORT,
-    SALES,
-    MARKETING,
-    DESIGN,
-    FINANCE,
-    // Add more as needed
-}
-```
-</details>
-
----
-
 <details>
 <summary><strong>Project Structure</strong></summary>
 
@@ -321,6 +202,125 @@ src/
 </details>
 
 ___
+
+### Explanation of the Classes and Relationships
+
+#### User (abstract)
+- **Base for users**, with role-based inheritance.
+- **Attributes:**  
+  - `id`, `username`, `email`, `passwordHash`, `role`
+- **Inheritance:**  
+  - `Customer`, `Admin` (JPA inheritance).
+
+#### Customer
+- **Extra attributes:**
+  - `profileImageUrl`: User's profile image URL.
+  - `preferredLanguage`: User's preferred language (enum `PreferredLanguage`, e.g. ES, EN, FR...).
+  - `isVerified`: Boolean for verification status.
+
+#### Admin
+- **Extra attributes:**
+  - `adminLevel`: Admin level (integer, higher = more privileges).
+  - `department`: Admin's department (enum `Department`, e.g. IT, HR, SUPPORT...).
+  - `departmentImageUrl`: Profile image based on department.
+  - `lastLogin`: Last login date/time.
+
+#### Asset
+- Represents the **base 3D asset** (t-shirt, mug, etc.).
+- **Attributes:**  
+  - `id`, `name`, `description`, `glbPath`, `thumbnailDefault`
+  - `partsConfigJson`: JSON with customizable parts definition (e.g. `{ "neck": {...}, "right_sleeve": {...} }`)
+  - **Relation:**  
+    - `design`: Unique base design associated with the asset (`Design`).
+
+#### Scene
+- Represents the **3D scene** (camera, lights, loaded asset, etc.).
+- **Attributes:**  
+  - `id`, `name`, `lightingConfigJson`, `cameraConfigJson`, `thumbnail`, `createdAt`, `updatedAt`
+  - `owner`: Scene's owner user.
+  - **Relation:**  
+    - `design`: Design shown in the scene, associated and customized.
+
+#### Design
+- **Customization** of an asset (texture, colors, materials, logos/texts).
+- **Attributes:**  
+  - `id`, `name`
+  - `textureMapUrl`: Custom base texture (UV).
+  - `materialsJson`, `partsColorsJson`, `logoConfigJson`, `textConfigJson`: JSONs with materials, colors, logo, and text data.
+  - **Relation:**  
+    - `asset`: Base asset being customized (1:1).
+
+---
+
+<details>
+<summary><strong>Enums</strong></summary>
+
+**Part** (customizable parts, per asset)
+```java
+public enum Part {
+    PECHO,
+    PECHO_IZQ,
+    ESPALDA,
+    ESPALDA_NUCA,
+    MANGA_DCHA,
+    MANGA_IZQ,
+    CUELLO,
+    ASA,
+    BASE,
+    INTERIOR,
+    LATERAL_DCHA,
+    LATERAL_IZQ
+}
+```
+
+**MaterialType** (available materials)
+```java
+public enum MaterialType {
+    ALGODON,
+    POLIESTER,
+    LANA,
+    CUERO,
+    CERAMICA,
+    PLASTICO,
+    METAL,
+    NYLON,
+    SEDA,
+    VAQUERO,
+    PORCELANA,
+    GOMA,
+    MADERA
+}
+```
+
+**PreferredLanguage** (supported user languages)
+```java
+public enum PreferredLanguage {
+    ES,     // Spanish
+    EN,     // English
+    FR,     // French
+    DE,     // German
+    IT,     // Italian
+    PT,     // Portuguese
+    // Add more as needed
+}
+```
+
+**Department** (admin departments)
+```java
+public enum Department {
+    IT,
+    HR,
+    SUPPORT,
+    SALES,
+    MARKETING,
+    DESIGN,
+    FINANCE,
+    // Add more as needed
+}
+```
+</details>
+
+---
 
 <details>
 <summary><strong>Testing</strong></summary>
