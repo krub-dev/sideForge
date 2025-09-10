@@ -18,7 +18,7 @@ classDiagram
         String username
         String email
         String passwordHash
-        String role
+        Role role
     }
     class Customer {
         String profileImageUrl
@@ -83,9 +83,9 @@ classDiagram
 ```plaintext
 src/
 ├── assets/                           # Static files (images, logos, base assets, mockups, etc)
-│   ├── logo.png
-│   ├── demo-asset.glb
-│   └── ...
+│   ├── logo/
+│   ├── model/demo-asset.glb
+│   └── schema/
 │
 ├── main/
 │   ├── java/
@@ -174,7 +174,7 @@ src/
 └── test/
     └── java/
         └── com/
-            └── side3d/
+            └── sideForge/
                 └── app/
                     ├── controller/
                     │   ├── UserControllerTest.java
