@@ -2,6 +2,7 @@ package com.sideforge.model;
 
 import com.sideforge.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.util.List;
@@ -27,23 +28,28 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "Username is required")
     protected String username;
 
     @Column(nullable = false, unique = true)
+    @Email(message = "Email must be valid")
+    @NotBlank(message = "Email is required")
     protected String email;
 
     @Column(nullable = false)
+    @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "Password must be at least 8 characters")
     protected String passwordHash;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @NotNull(message = "Role is required")
     protected Role role;
 
     // Relation: List of scenes owned by the user (OneToMany)

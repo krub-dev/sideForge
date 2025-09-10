@@ -2,6 +2,7 @@ package com.sideforge.model;
 
 import com.sideforge.enums.PreferredLanguage;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 /**

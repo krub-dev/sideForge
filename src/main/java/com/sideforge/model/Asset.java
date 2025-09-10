@@ -28,16 +28,17 @@ public class Asset {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Asset name is required")
     private String name;
 
     private String description;
 
-    @NotBlank
+    @NotBlank(message = "GLB path is required")
     private String glbPath;
 
     private String thumbnailDefault;
 
+    // JSON with config data (Lob for potentially large content)
     @Lob
     private String partsConfigJson;
 

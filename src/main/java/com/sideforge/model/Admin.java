@@ -2,6 +2,7 @@ package com.sideforge.model;
 
 import com.sideforge.enums.Department;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class Admin extends User {
+    @Column
     private Integer adminLevel;
 
     @Enumerated(EnumType.STRING)

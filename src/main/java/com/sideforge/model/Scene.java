@@ -1,6 +1,7 @@
 package com.sideforge.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
@@ -28,14 +29,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class Scene {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Scene name is required")
     private String name;
 
+    // JSONs with config data (Lob for potentially large content)
     @Lob
     private String lightingConfigJson;
 
@@ -45,18 +47,22 @@ public class Scene {
     private String thumbnail;
 
     @Column(nullable = false, updatable = false)
+    @NotNull(message = "Creation date is required")
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
+    @NotNull(message = "Update date is required")
     private LocalDateTime updatedAt;
 
     // Relation: Scene's owner user (ManyToOne)
     @ManyToOne(optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
+    @NotNull(message = "Owner is required")
     private User owner;
 
     // Relation: Design shown in the scene, associated and customized (OneToOne)
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "design_id", referencedColumnName = "id", nullable = false, unique = true)
+    @NotNull(message = "Design is required")
     private Design design;
 }

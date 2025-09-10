@@ -1,6 +1,7 @@
 package com.sideforge.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 /**
@@ -25,18 +26,18 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Design {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Design name is required")
     private String name;
 
     // Custom base texture (UV)
     private String textureMapUrl;
 
-    // JSONs with config data
+    // JSONs with config data (Lob for potentially large content)
     @Lob
     private String materialsJson;
 
@@ -52,5 +53,6 @@ public class Design {
     // Relation: base asset being customized (1:1)
     @OneToOne
     @JoinColumn(name = "asset_id", nullable = false, unique = true)
+    @NotNull(message = "Asset reference is required")
     private Asset asset;
 }
