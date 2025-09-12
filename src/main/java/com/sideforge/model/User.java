@@ -4,6 +4,7 @@ import com.sideforge.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

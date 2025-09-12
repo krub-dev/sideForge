@@ -4,6 +4,7 @@ import com.sideforge.enums.PreferredLanguage;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Customer entity representing an end user of the system.
@@ -19,7 +20,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class Customer extends User {
     private String profileImageUrl;
 
