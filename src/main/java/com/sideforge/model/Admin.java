@@ -4,6 +4,7 @@ import com.sideforge.enums.Department;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +23,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class Admin extends User {
     @Column
     private Integer adminLevel;
