@@ -61,7 +61,7 @@ public class Scene {
     private User owner;
 
     // Relation: Design shown in the scene, associated and customized (OneToOne)
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "design_id", referencedColumnName = "id", nullable = false, unique = true)
     @NotNull(message = "Design is required")
     private Design design;

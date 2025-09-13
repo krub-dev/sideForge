@@ -4,11 +4,12 @@ import com.sideforge.dto.user.UserUpdateDTO;
 import com.sideforge.enums.Department;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class AdminUpdateDTO extends UserUpdateDTO {
 
     @Min(value = 1, message = "Admin level must be at least 1")
