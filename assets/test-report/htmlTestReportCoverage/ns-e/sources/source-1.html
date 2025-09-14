@@ -1,0 +1,108 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DesignService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sideforge.service.interfaces</a>
+</div>
+
+<h1>Coverage Summary for Class: DesignService (com.sideforge.service.interfaces)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">DesignService$MockitoMock$ygK0UA7T</td>
+  </tr>
+  <tr>
+    <td class="name">DesignService$MockitoMock$ygK0UA7T$auxiliary$fsIUyalF</td>
+  </tr>
+  <tr>
+    <td class="name">DesignService$MockitoMock$ygK0UA7T$auxiliary$zRt26yfi</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sideforge.service.interfaces;
+&nbsp;
+&nbsp;import com.sideforge.dto.design.*;
+&nbsp;import org.springframework.data.domain.*;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public interface DesignService {
+&nbsp;    // Create a new design from DesignRequestDTO
+&nbsp;    DesignResponseDTO createDesign(DesignRequestDTO designRequestDTO);
+&nbsp;
+&nbsp;    // Get a design by its ID
+&nbsp;    DesignResponseDTO getDesignById(Long id);
+&nbsp;
+&nbsp;    // Get all designs as a list
+&nbsp;    List&lt;DesignResponseDTO&gt; getAllDesigns();
+&nbsp;
+&nbsp;    // Update a design by its ID
+&nbsp;    DesignResponseDTO updateDesign(Long id, DesignUpdateDTO designUpdateDTO);
+&nbsp;
+&nbsp;    // Delete a design by its ID
+&nbsp;    void deleteDesign(Long id);
+&nbsp;
+&nbsp;    // Get a design by asset ID (1:1 relation)
+&nbsp;    DesignResponseDTO getDesignByAssetId(Long assetId);
+&nbsp;
+&nbsp;    // Get paginated designs filtered by asset IDs
+&nbsp;    Page&lt;DesignResponseDTO&gt; getDesignsByAssetIds(List&lt;Long&gt; assetIds, Pageable pageable);
+&nbsp;
+&nbsp;    // Get paginated list of all designs
+&nbsp;    Page&lt;DesignResponseDTO&gt; getDesignsPage(Pageable pageable);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-09-15 00:10</div>
+</div>
+</body>
+</html>

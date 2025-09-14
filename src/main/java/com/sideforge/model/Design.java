@@ -51,7 +51,7 @@ public class Design {
     private String textConfigJson;
 
     // Relation: base asset being customized (1:1)
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "asset_id", nullable = false, unique = true)
     @NotNull(message = "Asset reference is required")
     private Asset asset;
