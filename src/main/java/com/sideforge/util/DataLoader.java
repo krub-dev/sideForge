@@ -3,7 +3,9 @@ package com.sideforge.util;
 import com.sideforge.model.*;
 import com.sideforge.enums.*;
 import com.sideforge.repository.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,21 +15,28 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
+    @Autowired
     private final UserRepository userRepository;
+    @Autowired
     private final AdminRepository adminRepository;
+    @Autowired
     private final CustomerRepository customerRepository;
+    @Autowired
     private final AssetRepository assetRepository;
+    @Autowired
     private final DesignRepository designRepository;
+    @Autowired
     private final SceneRepository sceneRepository;
 
     @Override
+    @Transactional
     public void run(String... args) {
         // Declared here (scope) to use them in other data initialization
         Customer customer1 = null;
         Customer customer2 = null;
         Admin admin1;
         Admin admin2;
-        final String ADMIN = Role.ADMIN.name();
+
         // Admins
         if (adminRepository.count() == 0) {
             admin1 = new Admin();
