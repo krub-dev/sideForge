@@ -1,6 +1,7 @@
 package com.sideforge.service.impl;
 
 import com.sideforge.dto.asset.*;
+import com.sideforge.exception.ResourceNotFoundException;
 import com.sideforge.model.Asset;
 import com.sideforge.repository.AssetRepository;
 import com.sideforge.service.interfaces.AssetService;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,8 +42,9 @@ public class AssetServiceImpl implements AssetService {
     // Get a single asset by its ID
     @Override
     public AssetResponseDTO getAssetById(Long id) {
-        Optional<Asset> asset = assetRepository.findById(id);
-        return asset.map(AssetServiceImpl::toResponseDTO).orElse(null);
+        Asset asset = assetRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Asset not found with id: " + id));
+        return toResponseDTO(asset);
     }
 
     // Get all assets as a list
@@ -59,11 +60,8 @@ public class AssetServiceImpl implements AssetService {
     @Override
     @Transactional
     public AssetResponseDTO updateAsset(Long id, AssetUpdateDTO assetUpdateDTO) {
-        Optional<Asset> assetOpt = assetRepository.findById(id);
-        if (assetOpt.isEmpty()) {
-            return null;
-        }
-        Asset asset = assetOpt.get();
+        Asset asset = assetRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Asset not found with id: " + id));
         asset.setName(assetUpdateDTO.getName());
         asset.setDescription(assetUpdateDTO.getDescription());
         asset.setGlbPath(assetUpdateDTO.getGlbPath());
@@ -78,7 +76,9 @@ public class AssetServiceImpl implements AssetService {
     @Override
     @Transactional
     public void deleteAsset(Long id) {
-        assetRepository.deleteById(id);
+        Asset asset = assetRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Asset not found with id: " + id));
+        assetRepository.delete(asset);
     }
 
     // Get a paginated list of assets

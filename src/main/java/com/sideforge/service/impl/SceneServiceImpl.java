@@ -1,6 +1,7 @@
 package com.sideforge.service.impl;
 
 import com.sideforge.dto.scene.*;
+import com.sideforge.exception.ResourceNotFoundException;
 import com.sideforge.model.*;
 import com.sideforge.repository.*;
 import com.sideforge.service.interfaces.SceneService;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
 
 @Service
 public class SceneServiceImpl implements SceneService {
@@ -31,9 +31,9 @@ public class SceneServiceImpl implements SceneService {
     @Transactional
     public SceneResponseDTO createScene(SceneRequestDTO dto) {
         User owner = userRepository.findById(dto.getOwnerId())
-                .orElseThrow(() -> new IllegalArgumentException("Owner not found: " + dto.getOwnerId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Owner not found: " + dto.getOwnerId()));
         Design design = designRepository.findById(dto.getDesignId())
-                .orElseThrow(() -> new IllegalArgumentException("Design not found: " + dto.getDesignId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Design not found: " + dto.getDesignId()));
 
         Scene scene = Scene.builder()
                 .name(dto.getName())
@@ -53,9 +53,9 @@ public class SceneServiceImpl implements SceneService {
     // Get a scene by its ID
     @Override
     public SceneResponseDTO getSceneById(Long id) {
-        return sceneRepository.findById(id)
-                .map(SceneServiceImpl::toResponseDTO)
-                .orElse(null);
+        Scene scene = sceneRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Scene not found: " + id));
+        return toResponseDTO(scene);
     }
 
     // Update a scene by its ID (PATCH: only not null fields are updated)
@@ -63,7 +63,7 @@ public class SceneServiceImpl implements SceneService {
     @Transactional
     public SceneResponseDTO updateScene(Long id, SceneUpdateDTO dto) {
         Scene scene = sceneRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Scene not found: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Scene not found: " + id));
 
         if (dto.getName() != null) scene.setName(dto.getName());
         if (dto.getLightingConfigJson() != null) scene.setLightingConfigJson(dto.getLightingConfigJson());
@@ -73,12 +73,12 @@ public class SceneServiceImpl implements SceneService {
         if (dto.getUpdatedAt() != null) scene.setUpdatedAt(dto.getUpdatedAt());
         if (dto.getOwnerId() != null) {
             User owner = userRepository.findById(dto.getOwnerId())
-                    .orElseThrow(() -> new IllegalArgumentException("Owner not found: " + dto.getOwnerId()));
+                    .orElseThrow(() -> new ResourceNotFoundException("Owner not found: " + dto.getOwnerId()));
             scene.setOwner(owner);
         }
         if (dto.getDesignId() != null) {
             Design design = designRepository.findById(dto.getDesignId())
-                    .orElseThrow(() -> new IllegalArgumentException("Design not found: " + dto.getDesignId()));
+                    .orElseThrow(() -> new ResourceNotFoundException("Design not found: " + dto.getDesignId()));
             scene.setDesign(design);
         }
 
@@ -90,7 +90,9 @@ public class SceneServiceImpl implements SceneService {
     @Override
     @Transactional
     public void deleteScene(Long id) {
-        sceneRepository.deleteById(id);
+        Scene scene = sceneRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Scene not found: " + id));
+        sceneRepository.delete(scene);
     }
 
     // Get all scenes paginated

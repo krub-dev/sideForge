@@ -2,6 +2,7 @@ package com.sideforge.service.impl;
 
 import com.sideforge.dto.admin.*;
 import com.sideforge.enums.Role;
+import com.sideforge.exception.ResourceNotFoundException;
 import com.sideforge.model.Admin;
 import com.sideforge.repository.AdminRepository;
 import com.sideforge.service.interfaces.AdminService;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,8 +47,9 @@ public class AdminServiceImpl implements AdminService {
     // Retrieve an admin user by its unique identifier
     @Override
     public AdminResponseDTO getAdminById(Long id) {
-        Optional<Admin> admin = adminRepository.findById(id);
-        return admin.map(AdminServiceImpl::toResponseDTO).orElse(null);
+        Admin admin = adminRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin not found with id: " + id));
+        return toResponseDTO(admin);
     }
 
     // Retrieve all admin users as a list (not paginated)
@@ -64,11 +65,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public AdminResponseDTO updateAdmin(Long id, AdminUpdateDTO adminUpdateDTO) {
-        Optional<Admin> adminOpt = adminRepository.findById(id);
-        if (adminOpt.isEmpty()) {
-            return null;
-        }
-        Admin admin = adminOpt.get();
+        Admin admin = adminRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin not found with id: " + id));
         admin.setUsername(adminUpdateDTO.getUsername());
         admin.setEmail(adminUpdateDTO.getEmail());
         // Only update password if provided (empty or null = ignore)
@@ -91,7 +89,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public void deleteAdmin(Long id) {
-        adminRepository.deleteById(id);
+        Admin admin = adminRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin not found with id: " + id));
+        adminRepository.delete(admin);
     }
 
     // Retrieve all admin users as a paginated list

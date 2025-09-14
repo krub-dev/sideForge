@@ -2,6 +2,7 @@ package com.sideforge.service.impl;
 
 import com.sideforge.dto.user.*;
 import com.sideforge.enums.Role;
+import com.sideforge.exception.ResourceNotFoundException;
 import com.sideforge.model.User;
 import com.sideforge.repository.UserRepository;
 import com.sideforge.service.interfaces.UserService;
@@ -33,8 +34,9 @@ public class UserServiceImpl implements UserService {
     // Find a user by its unique identifier
     @Override
     public UserResponseDTO getUserById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.map(UserServiceImpl::toResponseDTO).orElse(null);
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        return toResponseDTO(user);
     }
 
     // Retrieve all users as a list (not paginated)
@@ -50,11 +52,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
-        Optional<User> userOpt = userRepository.findById(id);
-        if (userOpt.isEmpty()) {
-            return null;
-        }
-        User user = userOpt.get();
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
         user.setUsername(userUpdateDTO.getUsername());
         user.setEmail(userUpdateDTO.getEmail());
         // Only update password if provided (empty or null = ignore)
@@ -72,7 +71,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        userRepository.delete(user);
     }
 
     // Retrieve all users as a paginated list
