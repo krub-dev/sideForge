@@ -1,0 +1,94 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DesignRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sideforge.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: DesignRepository (com.sideforge.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">DesignRepository$MockitoMock$DWh8BLpS</td>
+  </tr>
+  <tr>
+    <td class="name">DesignRepository$MockitoMock$DWh8BLpS$auxiliary$cGKVeovN</td>
+  </tr>
+  <tr>
+    <td class="name">DesignRepository$MockitoMock$DWh8BLpS$auxiliary$O1ypXJFE</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sideforge.repository;
+&nbsp;
+&nbsp;import com.sideforge.model.Design;
+&nbsp;import org.springframework.data.domain.Page;
+&nbsp;import org.springframework.data.domain.Pageable;
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+&nbsp;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public interface DesignRepository extends JpaRepository&lt;Design, Long&gt; {
+&nbsp;    // Find design by asset ID
+&nbsp;    Optional&lt;Design&gt; findByAsset_Id(Long assetId);
+&nbsp;
+&nbsp;    // Paginated: Find all designs by asset IDs with pagination and sorting
+&nbsp;    Page&lt;Design&gt; findAllByAsset_IdIn(List&lt;Long&gt; assetIds, Pageable pageable);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-09-15 00:10</div>
+</div>
+</body>
+</html>

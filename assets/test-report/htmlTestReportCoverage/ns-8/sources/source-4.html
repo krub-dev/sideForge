@@ -1,0 +1,265 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DesignServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sideforge.service.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: DesignServiceImpl (com.sideforge.service.impl)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DesignServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (16/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98,3%
+  </span>
+  <span class="absValue">
+    (57/58)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">DesignServiceImpl$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (16/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98,3%
+  </span>
+  <span class="absValue">
+    (57/58)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sideforge.service.impl;
+&nbsp;
+&nbsp;import com.sideforge.dto.design.*;
+&nbsp;import com.sideforge.exception.ResourceNotFoundException;
+&nbsp;import com.sideforge.model.*;
+&nbsp;import com.sideforge.repository.*;
+&nbsp;import com.sideforge.service.interfaces.DesignService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.data.domain.*;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.transaction.annotation.Transactional;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;import java.util.stream.Collectors;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class DesignServiceImpl implements DesignService {
+&nbsp;
+&nbsp;    private final DesignRepository designRepository;
+&nbsp;    private final AssetRepository assetRepository;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public DesignServiceImpl(DesignRepository designRepository, AssetRepository assetRepository) {</b>
+<b class="fc">&nbsp;        this.designRepository = designRepository;</b>
+<b class="fc">&nbsp;        this.assetRepository = assetRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Create a new design
+&nbsp;    @Override
+&nbsp;    @Transactional
+&nbsp;    public DesignResponseDTO createDesign(DesignRequestDTO dto) {
+<b class="fc">&nbsp;        Asset asset = assetRepository.findById(dto.getAssetId())</b>
+<b class="fc">&nbsp;                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Asset not found: &quot; + dto.getAssetId()));</b>
+<b class="fc">&nbsp;        Design design = Design.builder()</b>
+<b class="fc">&nbsp;                .name(dto.getName())</b>
+<b class="fc">&nbsp;                .textureMapUrl(dto.getTextureMapUrl())</b>
+<b class="fc">&nbsp;                .materialsJson(dto.getMaterialsJson())</b>
+<b class="fc">&nbsp;                .partsColorsJson(dto.getPartsColorsJson())</b>
+<b class="fc">&nbsp;                .logoConfigJson(dto.getLogoConfigJson())</b>
+<b class="fc">&nbsp;                .textConfigJson(dto.getTextConfigJson())</b>
+<b class="fc">&nbsp;                .asset(asset)</b>
+<b class="fc">&nbsp;                .build();</b>
+<b class="fc">&nbsp;        Design saved = designRepository.save(design);</b>
+<b class="fc">&nbsp;        return toResponseDTO(saved);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Get design by ID
+&nbsp;    @Override
+&nbsp;    public DesignResponseDTO getDesignById(Long id) {
+<b class="fc">&nbsp;        Design design = designRepository.findById(id)</b>
+<b class="fc">&nbsp;                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Design not found with id: &quot; + id));</b>
+<b class="fc">&nbsp;        return toResponseDTO(design);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Get all designs
+&nbsp;    @Override
+&nbsp;    public List&lt;DesignResponseDTO&gt; getAllDesigns() {
+<b class="fc">&nbsp;        return designRepository.findAll().stream()</b>
+<b class="fc">&nbsp;                .map(DesignServiceImpl::toResponseDTO)</b>
+<b class="fc">&nbsp;                .collect(Collectors.toList());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Update design by ID
+&nbsp;    @Override
+&nbsp;    @Transactional
+&nbsp;    public DesignResponseDTO updateDesign(Long id, DesignUpdateDTO dto) {
+<b class="fc">&nbsp;        Design design = designRepository.findById(id)</b>
+<b class="fc">&nbsp;                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Design not found with id: &quot; + id));</b>
+&nbsp;
+<b class="fc">&nbsp;        if (dto.getName() != null) design.setName(dto.getName());</b>
+<b class="fc">&nbsp;        if (dto.getTextureMapUrl() != null) design.setTextureMapUrl(dto.getTextureMapUrl());</b>
+<b class="fc">&nbsp;        if (dto.getMaterialsJson() != null) design.setMaterialsJson(dto.getMaterialsJson());</b>
+<b class="fc">&nbsp;        if (dto.getPartsColorsJson() != null) design.setPartsColorsJson(dto.getPartsColorsJson());</b>
+<b class="fc">&nbsp;        if (dto.getLogoConfigJson() != null) design.setLogoConfigJson(dto.getLogoConfigJson());</b>
+<b class="fc">&nbsp;        if (dto.getTextConfigJson() != null) design.setTextConfigJson(dto.getTextConfigJson());</b>
+<b class="pc">&nbsp;        if (dto.getAssetId() != null) {</b>
+<b class="fc">&nbsp;            Asset asset = assetRepository.findById(dto.getAssetId())</b>
+<b class="fc">&nbsp;                    .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Asset not found: &quot; + dto.getAssetId()));</b>
+<b class="fc">&nbsp;            design.setAsset(asset);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        Design saved = designRepository.save(design);</b>
+<b class="fc">&nbsp;        return toResponseDTO(saved);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Delete design by ID
+&nbsp;    @Override
+&nbsp;    @Transactional
+&nbsp;    public void deleteDesign(Long id) {
+<b class="fc">&nbsp;        Design design = designRepository.findById(id)</b>
+<b class="fc">&nbsp;                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Design not found with id: &quot; + id));</b>
+<b class="fc">&nbsp;        designRepository.delete(design);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Get design by assetId (1:1)
+&nbsp;    @Override
+&nbsp;    public DesignResponseDTO getDesignByAssetId(Long assetId) {
+<b class="fc">&nbsp;        Design design = designRepository.findByAsset_Id(assetId)</b>
+<b class="fc">&nbsp;                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Design not found for assetId: &quot; + assetId));</b>
+<b class="fc">&nbsp;        return toResponseDTO(design);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Paginated: get designs by assetIds
+&nbsp;    @Override
+&nbsp;    public Page&lt;DesignResponseDTO&gt; getDesignsByAssetIds(List&lt;Long&gt; assetIds, Pageable pageable) {
+<b class="fc">&nbsp;        return designRepository.findAllByAsset_IdIn(assetIds, pageable)</b>
+<b class="fc">&nbsp;                .map(DesignServiceImpl::toResponseDTO);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Paginated: get all designs
+&nbsp;    @Override
+&nbsp;    public Page&lt;DesignResponseDTO&gt; getDesignsPage(Pageable pageable) {
+<b class="fc">&nbsp;        return designRepository.findAll(pageable)</b>
+<b class="fc">&nbsp;                .map(DesignServiceImpl::toResponseDTO);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Helper to map Design to DesignResponseDTO
+&nbsp;    private static DesignResponseDTO toResponseDTO(Design design) {
+<b class="pc">&nbsp;        if (design == null)</b>
+<b class="nc">&nbsp;            return null;</b>
+<b class="fc">&nbsp;        return DesignResponseDTO.builder()</b>
+<b class="fc">&nbsp;                .id(design.getId())</b>
+<b class="fc">&nbsp;                .name(design.getName())</b>
+<b class="fc">&nbsp;                .textureMapUrl(design.getTextureMapUrl())</b>
+<b class="fc">&nbsp;                .materialsJson(design.getMaterialsJson())</b>
+<b class="fc">&nbsp;                .partsColorsJson(design.getPartsColorsJson())</b>
+<b class="fc">&nbsp;                .logoConfigJson(design.getLogoConfigJson())</b>
+<b class="fc">&nbsp;                .textConfigJson(design.getTextConfigJson())</b>
+<b class="fc">&nbsp;                .assetId(design.getAsset() != null ? design.getAsset().getId() : null)</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-09-15 00:10</div>
+</div>
+</body>
+</html>

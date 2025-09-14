@@ -1,0 +1,246 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > SceneController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sideforge.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: SceneController (com.sideforge.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SceneController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/22)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SceneController$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">SceneController$$SpringCGLIB$$1</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/22)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sideforge.controller;
+&nbsp;
+&nbsp;import com.sideforge.dto.scene.*;
+&nbsp;import com.sideforge.service.interfaces.SceneService;
+&nbsp;import io.swagger.v3.oas.annotations.Operation;
+&nbsp;import jakarta.validation.Valid;
+&nbsp;import jakarta.validation.constraints.*;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.data.domain.*;
+&nbsp;import org.springframework.format.annotation.DateTimeFormat;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.validation.annotation.Validated;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.net.URI;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/scenes&quot;)
+&nbsp;@Validated
+<b class="fc">&nbsp;public class SceneController {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private SceneService sceneService;
+&nbsp;
+&nbsp;    @PostMapping
+&nbsp;    @Operation(summary = &quot;Create scene&quot;, description = &quot;Creates a new scene and returns it.&quot;)
+&nbsp;    public ResponseEntity&lt;SceneResponseDTO&gt; createScene(@Valid @RequestBody SceneRequestDTO dto) {
+<b class="fc">&nbsp;        SceneResponseDTO created = sceneService.createScene(dto);</b>
+<b class="fc">&nbsp;        URI location = URI.create(&quot;/api/scenes/&quot; + created.getId());</b>
+<b class="fc">&nbsp;        return ResponseEntity.created(location).body(created);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/{id}&quot;)
+&nbsp;    @Operation(summary = &quot;Get scene by ID&quot;, description = &quot;Returns the details of a scene by its ID.&quot;)
+&nbsp;    public ResponseEntity&lt;SceneResponseDTO&gt; getSceneById(@PathVariable @Positive Long id) {
+<b class="fc">&nbsp;        SceneResponseDTO dto = sceneService.getSceneById(id);</b>
+<b class="pc">&nbsp;        return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping(&quot;/{id}&quot;)
+&nbsp;    @Operation(summary = &quot;Update scene&quot;, description = &quot;Updates the data of an existing scene.&quot;)
+&nbsp;    public ResponseEntity&lt;SceneResponseDTO&gt; updateScene(@PathVariable @Positive Long id, @Valid @RequestBody SceneUpdateDTO dto) {
+<b class="fc">&nbsp;        SceneResponseDTO updated = sceneService.updateScene(id, dto);</b>
+<b class="pc">&nbsp;        return updated != null ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/{id}&quot;)
+&nbsp;    @Operation(summary = &quot;Delete scene&quot;, description = &quot;Deletes a scene by its ID.&quot;)
+&nbsp;    public ResponseEntity&lt;Void&gt; deleteScene(@PathVariable @Positive Long id) {
+<b class="fc">&nbsp;        sceneService.deleteScene(id);</b>
+<b class="fc">&nbsp;        return ResponseEntity.noContent().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/page&quot;)
+&nbsp;    @Operation(summary = &quot;Get paginated scenes&quot;, description = &quot;Returns a paginated list of all scenes.&quot;)
+&nbsp;    public ResponseEntity&lt;Page&lt;SceneResponseDTO&gt;&gt; getScenesPage(
+&nbsp;            @RequestParam(defaultValue = &quot;0&quot;) @PositiveOrZero int page,
+&nbsp;            @RequestParam(defaultValue = &quot;10&quot;) @PositiveOrZero int size,
+&nbsp;            @RequestParam(defaultValue = &quot;id,asc&quot;) String[] sort
+&nbsp;    ) {
+<b class="fc">&nbsp;        Sort sortObj = Sort.by(Sort.Direction.fromString(sort[1]), sort[0]);</b>
+<b class="fc">&nbsp;        Pageable pageable = PageRequest.of(page, size, sortObj);</b>
+<b class="fc">&nbsp;        return ResponseEntity.ok(sceneService.getAllScenes(pageable));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/by-owner&quot;)
+&nbsp;    @Operation(summary = &quot;Get scenes by owner (paginated)&quot;, description = &quot;Returns a paginated list of scenes belonging to an owner.&quot;)
+&nbsp;    public ResponseEntity&lt;Page&lt;SceneResponseDTO&gt;&gt; getScenesByOwnerId(
+&nbsp;            @RequestParam @Positive Long ownerId,
+&nbsp;            @RequestParam(defaultValue = &quot;0&quot;) @PositiveOrZero int page,
+&nbsp;            @RequestParam(defaultValue = &quot;10&quot;) @PositiveOrZero int size,
+&nbsp;            @RequestParam(defaultValue = &quot;id,asc&quot;) String[] sort
+&nbsp;    ) {
+<b class="fc">&nbsp;        Sort sortObj = Sort.by(Sort.Direction.fromString(sort[1]), sort[0]);</b>
+<b class="fc">&nbsp;        Pageable pageable = PageRequest.of(page, size, sortObj);</b>
+<b class="fc">&nbsp;        return ResponseEntity.ok(sceneService.getScenesByOwnerId(ownerId, pageable));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/by-name-and-owner&quot;)
+&nbsp;    @Operation(summary = &quot;Get scene by name and owner&quot;, description = &quot;Returns a scene by its name and owner ID.&quot;)
+&nbsp;    public ResponseEntity&lt;SceneResponseDTO&gt; getSceneByNameAndOwner(
+&nbsp;            @RequestParam String name,
+&nbsp;            @RequestParam @Positive Long ownerId
+&nbsp;    ) {
+<b class="fc">&nbsp;        SceneResponseDTO dto = sceneService.getSceneByNameAndOwner(name, ownerId);</b>
+<b class="pc">&nbsp;        return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/created-between&quot;)
+&nbsp;    @Operation(summary = &quot;Get scenes created between dates (paginated)&quot;, description = &quot;Returns a paginated list of scenes created between two dates.&quot;)
+&nbsp;    public ResponseEntity&lt;Page&lt;SceneResponseDTO&gt;&gt; getScenesCreatedBetween(
+&nbsp;            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
+&nbsp;            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end,
+&nbsp;            @RequestParam(defaultValue = &quot;0&quot;) @PositiveOrZero int page,
+&nbsp;            @RequestParam(defaultValue = &quot;10&quot;) @PositiveOrZero int size,
+&nbsp;            @RequestParam(defaultValue = &quot;id,asc&quot;) String[] sort
+&nbsp;    ) {
+<b class="fc">&nbsp;        Sort sortObj = Sort.by(Sort.Direction.fromString(sort[1]), sort[0]);</b>
+<b class="fc">&nbsp;        Pageable pageable = PageRequest.of(page, size, sortObj);</b>
+<b class="fc">&nbsp;        return ResponseEntity.ok(sceneService.getScenesCreatedBetween(start, end, pageable));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/count-by-owner&quot;)
+&nbsp;    @Operation(summary = &quot;Count scenes by owner&quot;, description = &quot;Returns the number of scenes belonging to an owner.&quot;)
+&nbsp;    public ResponseEntity&lt;Long&gt; countScenesByOwner(@RequestParam @Positive Long ownerId) {
+<b class="fc">&nbsp;        return ResponseEntity.ok(sceneService.countScenesByOwner(ownerId));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-09-15 00:10</div>
+</div>
+</body>
+</html>

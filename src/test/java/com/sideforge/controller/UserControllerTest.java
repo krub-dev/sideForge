@@ -30,6 +30,7 @@ class UserControllerTest {
 
     @WithMockUser
     @Test
+    // Tests retrieving all users returns the correct list.
     void getAllUsers() throws Exception {
         UserResponseDTO user = new UserResponseDTO();
         user.setId(1L);
@@ -43,6 +44,7 @@ class UserControllerTest {
 
     @WithMockUser
     @Test
+    // Tests retrieving a user by ID returns the correct user.
     void getUserById() throws Exception {
         UserResponseDTO user = new UserResponseDTO();
         user.setId(1L);
@@ -56,6 +58,7 @@ class UserControllerTest {
 
     @WithMockUser
     @Test
+    // Tests updating a user returns the updated user.
     void updateUser() throws Exception {
         UserUpdateDTO updateDTO = new UserUpdateDTO();
 
@@ -75,6 +78,7 @@ class UserControllerTest {
 
     @WithMockUser
     @Test
+    // Tests deleting a user returns no content status.
     void deleteUser() throws Exception {
         doNothing().when(userService).deleteUser(1L);
 
@@ -85,6 +89,7 @@ class UserControllerTest {
 
     @WithMockUser
     @Test
+    // Tests retrieving a paginated list of users returns the correct page.
     void getUsersPage() throws Exception {
         UserResponseDTO user = new UserResponseDTO();
         user.setId(1L);
@@ -102,6 +107,7 @@ class UserControllerTest {
 
     @WithMockUser
     @Test
+    // Tests retrieving a paginated list of users filtered by role returns the correct page.
     void getUsersPageByRole() throws Exception {
         UserResponseDTO user = new UserResponseDTO();
         user.setId(1L);

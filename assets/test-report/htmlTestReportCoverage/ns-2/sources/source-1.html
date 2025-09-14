@@ -1,0 +1,158 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > OpenApiConfig</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sideforge.config</a>
+</div>
+
+<h1>Coverage Summary for Class: OpenApiConfig (com.sideforge.config)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">OpenApiConfig</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">OpenApiConfig$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">OpenApiConfig$$SpringCGLIB$$FastClass$$0</td>
+  </tr>
+  <tr>
+    <td class="name">OpenApiConfig$$SpringCGLIB$$FastClass$$1</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sideforge.config;
+&nbsp;
+&nbsp;import io.swagger.v3.oas.models.OpenAPI;
+&nbsp;import io.swagger.v3.oas.models.info.Contact;
+&nbsp;import io.swagger.v3.oas.models.info.Info;
+&nbsp;import io.swagger.v3.oas.models.info.License;
+&nbsp;import org.springframework.context.annotation.Bean;
+&nbsp;import org.springframework.context.annotation.Configuration;
+&nbsp;
+&nbsp;/**
+&nbsp; * OpenAPI configuration for sideForge API.
+&nbsp; * This configuration sets up Swagger UI with metadata describing the sideForge platform,
+&nbsp; * which supports 3D asset customization, scene management, and user roles.
+&nbsp; */
+&nbsp;@Configuration
+<b class="fc">&nbsp;public class OpenApiConfig {</b>
+&nbsp;
+&nbsp;    @Bean
+&nbsp;    public OpenAPI customOpenAPI() {
+<b class="fc">&nbsp;        return new OpenAPI()</b>
+<b class="fc">&nbsp;                .info(new Info()</b>
+<b class="fc">&nbsp;                        .title(&quot;sideForge API&quot;)</b>
+<b class="fc">&nbsp;                        .version(&quot;1.0.0&quot;)</b>
+<b class="fc">&nbsp;                        .description(</b>
+&nbsp;                                &quot;Side3D API enables the management of customizable 3D scenes and assets for end users and administrators.\n\n&quot; +
+&nbsp;                                        &quot;Main features:\n&quot; +
+&nbsp;                                        &quot;- **Users &amp; Roles:** Handles admin and customer roles, user authentication and verification.\n&quot; +
+&nbsp;                                        &quot;- **Assets:** Manage base 3D assets (e.g., t-shirt, mug) with customizable parts and configuration.\n&quot; +
+&nbsp;                                        &quot;- **Designs:** Customize assets through textures, materials, colors, logos, and text overlays.\n&quot; +
+&nbsp;                                        &quot;- **Scenes:** Configure 3D scenes with camera, lighting, and associated customized designs.\n&quot; +
+&nbsp;                                        &quot;- **Ownership &amp; Access:** Link scenes to their owning users, and enforce access controls on customization.\n\n&quot; +
+&nbsp;                                        &quot;The API is structured around resource-oriented endpoints supporting the complete lifecycle of 3D asset customization and scene management.&quot;
+&nbsp;                        )
+<b class="fc">&nbsp;                        .contact(new Contact()</b>
+<b class="fc">&nbsp;                                .name(&quot;sideForge by krub-dev&quot;)</b>
+<b class="fc">&nbsp;                                .url(&quot;https://github.com/krub-dev/sideForge&quot;)));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-09-15 00:10</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > User</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sideforge.model</a>
+</div>
+
+<h1>Coverage Summary for Class: User (com.sideforge.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">User$HibernateAccessOptimizer5email5passwordHash5role5scenes5username</td>
+  </tr>
+  <tr>
+    <td class="name">User$HibernateProxy</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sideforge.model;
+&nbsp;
+&nbsp;import com.sideforge.enums.Role;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import jakarta.validation.constraints.*;
+&nbsp;import lombok.*;
+&nbsp;import lombok.experimental.SuperBuilder;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;/**
+&nbsp; * Abstract user entity.
+&nbsp; * ----------------------------------------------------------------
+&nbsp; * Attributes:
+&nbsp; * - id: Primary key.
+&nbsp; * - username: Unique username for the user.
+&nbsp; * - email: Unique email for the user.
+&nbsp; * - passwordHash: Hashed password.
+&nbsp; * - role: User role (CUSTOMER, ADMIN).
+&nbsp; * ----------------------------------------------------------------
+&nbsp; * Relations:
+&nbsp; * - scenes: List of scenes owned by the user (OneToMany).
+&nbsp; */
+&nbsp;@Entity
+&nbsp;@Inheritance(strategy = InheritanceType.JOINED)
+&nbsp;@Table(name = &quot;users&quot;, uniqueConstraints = {
+&nbsp;        @UniqueConstraint(columnNames = &quot;email&quot;)
+&nbsp;})
+&nbsp;@Data
+&nbsp;@AllArgsConstructor
+&nbsp;@NoArgsConstructor
+&nbsp;@SuperBuilder
+&nbsp;public abstract class User {
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    protected Long id;
+&nbsp;
+&nbsp;    @Column(nullable = false, unique = true)
+&nbsp;    @NotBlank(message = &quot;Username is required&quot;)
+&nbsp;    protected String username;
+&nbsp;
+&nbsp;    @Column(nullable = false, unique = true)
+&nbsp;    @Email(message = &quot;Email must be valid&quot;)
+&nbsp;    @NotBlank(message = &quot;Email is required&quot;)
+&nbsp;    protected String email;
+&nbsp;
+&nbsp;    @Column(nullable = false)
+&nbsp;    @NotBlank(message = &quot;Password is required&quot;)
+&nbsp;    @Size(min = 8, message = &quot;Password must be at least 8 characters&quot;)
+&nbsp;    protected String passwordHash;
+&nbsp;
+&nbsp;    @Enumerated(EnumType.STRING)
+&nbsp;    @Column(nullable = false)
+&nbsp;    @NotNull(message = &quot;Role is required&quot;)
+&nbsp;    protected Role role;
+&nbsp;
+&nbsp;    // Relation: List of scenes owned by the user (OneToMany)
+&nbsp;    @OneToMany(mappedBy = &quot;owner&quot;, cascade = CascadeType.ALL, orphanRemoval = true)
+&nbsp;    protected List&lt;Scene&gt; scenes;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-09-15 00:10</div>
+</div>
+</body>
+</html>
