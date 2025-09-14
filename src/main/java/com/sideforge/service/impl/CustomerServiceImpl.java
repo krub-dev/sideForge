@@ -2,6 +2,7 @@ package com.sideforge.service.impl;
 
 import com.sideforge.dto.customer.*;
 import com.sideforge.enums.Role;
+import com.sideforge.exception.ResourceNotFoundException;
 import com.sideforge.model.Customer;
 import com.sideforge.repository.CustomerRepository;
 import com.sideforge.service.interfaces.CustomerService;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,8 +46,9 @@ public class CustomerServiceImpl implements CustomerService {
     // Retrieve a customer by their unique ID.
     @Override
     public CustomerResponseDTO getCustomerById(Long id) {
-        Optional<Customer> customer = customerRepository.findById(id);
-        return customer.map(CustomerServiceImpl::toResponseDTO).orElse(null);
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + id));
+        return toResponseDTO(customer);
     }
 
     // Get a list with all customers.
@@ -63,11 +64,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     public CustomerResponseDTO updateCustomer(Long id, CustomerUpdateDTO customerUpdateDTO) {
-        Optional<Customer> customerOpt = customerRepository.findById(id);
-        if (customerOpt.isEmpty()) {
-            return null;
-        }
-        Customer customer = customerOpt.get();
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + id));
         customer.setUsername(customerUpdateDTO.getUsername());
         customer.setEmail(customerUpdateDTO.getEmail());
         // Only update password if provided (empty or null = ignore)
@@ -90,7 +88,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     public void deleteCustomer(Long id) {
-        customerRepository.deleteById(id);
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + id));
+        customerRepository.delete(customer);
     }
 
     // Get a paginated list of customers

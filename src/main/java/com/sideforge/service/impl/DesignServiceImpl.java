@@ -1,6 +1,7 @@
 package com.sideforge.service.impl;
 
 import com.sideforge.dto.design.*;
+import com.sideforge.exception.ResourceNotFoundException;
 import com.sideforge.model.*;
 import com.sideforge.repository.*;
 import com.sideforge.service.interfaces.DesignService;
@@ -24,12 +25,12 @@ public class DesignServiceImpl implements DesignService {
         this.assetRepository = assetRepository;
     }
 
-    // Create a new design from DesignRequestDTO
+    // Create a new design
     @Override
     @Transactional
     public DesignResponseDTO createDesign(DesignRequestDTO dto) {
         Asset asset = assetRepository.findById(dto.getAssetId())
-                .orElseThrow(() -> new IllegalArgumentException("Asset not found: " + dto.getAssetId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Asset not found: " + dto.getAssetId()));
         Design design = Design.builder()
                 .name(dto.getName())
                 .textureMapUrl(dto.getTextureMapUrl())
@@ -43,13 +44,15 @@ public class DesignServiceImpl implements DesignService {
         return toResponseDTO(saved);
     }
 
-    // Get a design by its ID
+    // Get design by ID
     @Override
     public DesignResponseDTO getDesignById(Long id) {
-        return designRepository.findById(id).map(DesignServiceImpl::toResponseDTO).orElse(null);
+        Design design = designRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Design not found with id: " + id));
+        return toResponseDTO(design);
     }
 
-    // Get all designs as a list
+    // Get all designs
     @Override
     public List<DesignResponseDTO> getAllDesigns() {
         return designRepository.findAll().stream()
@@ -57,15 +60,12 @@ public class DesignServiceImpl implements DesignService {
                 .collect(Collectors.toList());
     }
 
-    // Update a design by its ID
+    // Update design by ID
     @Override
     @Transactional
     public DesignResponseDTO updateDesign(Long id, DesignUpdateDTO dto) {
-        Optional<Design> designOpt = designRepository.findById(id);
-        if (designOpt.isEmpty()) {
-            return null;
-        }
-        Design design = designOpt.get();
+        Design design = designRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Design not found with id: " + id));
 
         if (dto.getName() != null) design.setName(dto.getName());
         if (dto.getTextureMapUrl() != null) design.setTextureMapUrl(dto.getTextureMapUrl());
@@ -75,36 +75,38 @@ public class DesignServiceImpl implements DesignService {
         if (dto.getTextConfigJson() != null) design.setTextConfigJson(dto.getTextConfigJson());
         if (dto.getAssetId() != null) {
             Asset asset = assetRepository.findById(dto.getAssetId())
-                    .orElseThrow(() -> new IllegalArgumentException("Asset not found: " + dto.getAssetId()));
+                    .orElseThrow(() -> new ResourceNotFoundException("Asset not found: " + dto.getAssetId()));
             design.setAsset(asset);
         }
         Design saved = designRepository.save(design);
         return toResponseDTO(saved);
     }
 
-    // Delete a design by its ID
+    // Delete design by ID
     @Override
     @Transactional
     public void deleteDesign(Long id) {
-        designRepository.deleteById(id);
+        Design design = designRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Design not found with id: " + id));
+        designRepository.delete(design);
     }
 
-    // Get a design by asset ID (1:1 relation)
+    // Get design by assetId (1:1)
     @Override
     public DesignResponseDTO getDesignByAssetId(Long assetId) {
-        return designRepository.findByAsset_Id(assetId)
-                .map(DesignServiceImpl::toResponseDTO)
-                .orElse(null);
+        Design design = designRepository.findByAsset_Id(assetId)
+                .orElseThrow(() -> new ResourceNotFoundException("Design not found for assetId: " + assetId));
+        return toResponseDTO(design);
     }
 
-    // Get paginated designs filtered by asset IDs
+    // Paginated: get designs by assetIds
     @Override
     public Page<DesignResponseDTO> getDesignsByAssetIds(List<Long> assetIds, Pageable pageable) {
         return designRepository.findAllByAsset_IdIn(assetIds, pageable)
                 .map(DesignServiceImpl::toResponseDTO);
     }
 
-    // Get paginated list of all designs
+    // Paginated: get all designs
     @Override
     public Page<DesignResponseDTO> getDesignsPage(Pageable pageable) {
         return designRepository.findAll(pageable)
