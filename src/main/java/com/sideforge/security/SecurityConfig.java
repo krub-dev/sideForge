@@ -15,7 +15,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Sintaxis moderna, pero la antigua también funciona
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/**").hasAnyRole("ADMIN", "CUSTOMER")
                         .anyRequest().permitAll()
@@ -33,12 +33,12 @@ public class SecurityConfig {
                 .roles("ADMIN")
                 .build();
 
-        // You can add more users here if needed
-        // UserDetails customer = User.withDefaultPasswordEncoder()
-        //     .username("customer")
-        //     .password("customer")
-        //     .roles("CUSTOMER")
-        //     .build();
+        // Add more users here if needed
+        UserDetails customer = User.withDefaultPasswordEncoder()
+             .username("customer")
+             .password("customer")
+             .roles("CUSTOMER")
+             .build();
         return new InMemoryUserDetailsManager(admin);
     }
 }
