@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "1a820950-3ec9-4da9-8d68-4a6192594b02",
+		"_postman_id": "e72aabfd-b826-4dbc-81cb-669115ea89f1",
 		"name": "sideForge Demo",
 		"description": "Demo collection for sideForge API. Shows CRUD flows, pagination, role restrictions and auth examples.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "47121607",
-		"_collection_link": "https://krub-dev-8744832.postman.co/workspace/krub's-Workspace~3a764723-df71-4388-83da-dee967faa5a0/collection/47121607-1a820950-3ec9-4da9-8d68-4a6192594b02?action=share&source=collection_link&creator=47121607"
+		"_collection_link": "https://krub-dev-8744832.postman.co/workspace/krub's-Workspace~3a764723-df71-4388-83da-dee967faa5a0/collection/47121607-e72aabfd-b826-4dbc-81cb-669115ea89f1?action=share&source=collection_link&creator=47121607"
 	},
 	"item": [
 		{
@@ -97,7 +97,7 @@
 					"response": []
 				},
 				{
-					"name": "2. Create asset (customer)",
+					"name": "3. Create asset (customer)",
 					"event": [
 						{
 							"listen": "test",
@@ -155,7 +155,7 @@
 					"response": []
 				},
 				{
-					"name": "3. Create design 1 for asset (admin)",
+					"name": "4. Create design for asset (admin)",
 					"event": [
 						{
 							"listen": "test",
@@ -197,7 +197,7 @@
 					"response": []
 				},
 				{
-					"name": "4. Create scene 1 for customer",
+					"name": "5. Create scene for customer",
 					"event": [
 						{
 							"listen": "test",
@@ -239,91 +239,7 @@
 					"response": []
 				},
 				{
-					"name": "5. Create design 2 for asset (admin)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var json = pm.response.json();",
-									"if(json && json.id) {",
-									"    pm.collectionVariables.set('designId2', json.id);",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"Mug with text\",\n  \"textureMapUrl\": \"https://example.com/mug-uv2.png\",\n  \"materialsJson\": \"{\\\"base\\\":\\\"CERAMIC\\\"}\",\n  \"partsColorsJson\": \"{\\\"handle\\\":\\\"#FFFFFF\\\",\\\"base\\\":\\\"#FF0000\\\"}\",\n  \"logoConfigJson\": \"{\\\"url\\\":\\\"https://example.com/another-logo.png\\\"}\",\n  \"textConfigJson\": \"{\\\"text\\\":\\\"Scene 2!\\\"}\",\n  \"assetId\": {{assetId}},\n  \"ownerId\": {{customerId}}\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/designs",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"designs"
-							]
-						},
-						"description": "Creates the second design for the asset."
-					},
-					"response": []
-				},
-				{
-					"name": "6. Create scene 2 for customer",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var json = pm.response.json();",
-									"if(json && json.id) {",
-									"    pm.collectionVariables.set('sceneId2', json.id);",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"Demo Scene 2\",\n  \"lightingConfigJson\": \"{\\\"lights\\\":2}\",\n  \"cameraConfigJson\": \"{\\\"angle\\\":30}\",\n  \"thumbnail\": \"https://example.com/scene2.png\",\n  \"createdAt\": \"16-09-2025 01:10:00\",\n  \"updatedAt\": \"16-09-2025 01:10:00\",\n  \"ownerId\": {{customerId}},\n  \"designId\": {{designId2}}\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/scenes",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"scenes"
-							]
-						},
-						"description": "Creates a second scene for the customer user, with a different design."
-					},
-					"response": []
-				},
-				{
-					"name": "7. List Pagination scenes by owner",
+					"name": "6. List Pagination scenes by owner",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -424,6 +340,49 @@
 			"name": "CRUD Examples",
 			"item": [
 				{
+					"name": "Data Consult",
+					"item": [
+						{
+							"name": "Get all assets (admin)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/assets",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"assets"
+									]
+								},
+								"description": "Lists all users (should work for admin)."
+							},
+							"response": []
+						},
+						{
+							"name": "Get all designs (admin)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/designs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"designs"
+									]
+								},
+								"description": "Lists all users (should work for admin)."
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Update asset (admin)",
 					"request": {
 						"method": "PUT",
@@ -453,7 +412,7 @@
 					"response": []
 				},
 				{
-					"name": "Update design 1 (admin)",
+					"name": "Update design (admin)",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -482,7 +441,7 @@
 					"response": []
 				},
 				{
-					"name": "Update scene 1 (admin)",
+					"name": "Update scene (admin)",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -511,19 +470,19 @@
 					"response": []
 				},
 				{
-					"name": "Delete scene 2 (admin)",
+					"name": "Delete scene (admin)",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/scenes/{{sceneId2}}",
+							"raw": "{{baseUrl}}/api/scenes/{{sceneId1}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"scenes",
-								"{{sceneId2}}"
+								"{{sceneId1}}"
 							]
 						},
 						"description": "Deletes scene 2."
@@ -531,27 +490,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete design 2 (admin)",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/api/designs/{{designId2}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"designs",
-								"{{designId2}}"
-							]
-						},
-						"description": "Deletes design 2."
-					},
-					"response": []
-				},
-				{
-					"name": "Delete design 1 (admin)",
+					"name": "Delete design (admin)",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -628,6 +567,28 @@
 			}
 		]
 	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "baseUrl",
@@ -646,15 +607,7 @@
 			"value": ""
 		},
 		{
-			"key": "designId2",
-			"value": ""
-		},
-		{
 			"key": "sceneId1",
-			"value": ""
-		},
-		{
-			"key": "sceneId2",
 			"value": ""
 		}
 	]
