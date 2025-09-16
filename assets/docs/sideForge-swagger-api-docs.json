@@ -1,0 +1,3634 @@
+{
+	"info": {
+		"_postman_id": "643c6302-2b11-46b4-a933-b0341e4da260",
+		"name": "sideForge API",
+		"description": "Side3D API enables the management of customizable 3D scenes and assets for end users and administrators.\n\nMain features:\n- **Users & Roles:** Handles admin and customer roles, user authentication and verification.\n- **Assets:** Manage base 3D assets (e.g., t-shirt, mug) with customizable parts and configuration.\n- **Designs:** Customize assets through textures, materials, colors, logos, and text overlays.\n- **Scenes:** Configure 3D scenes with camera, lighting, and associated customized designs.\n- **Ownership & Access:** Link scenes to their owning users, and enforce access controls on customization.\n\nThe API is structured around resource-oriented endpoints supporting the complete lifecycle of 3D asset customization and scene management.\n\nContact Support:\n Name: sideForge by krub-dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47121607",
+		"_collection_link": "https://krub-dev-8744832.postman.co/workspace/krub's-Workspace~3a764723-df71-4388-83da-dee967faa5a0/collection/47121607-643c6302-2b11-46b4-a933-b0341e4da260?action=share&source=collection_link&creator=47121607"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get user by ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Returns the details of a user by their ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 8913,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"ADMIN\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Update user",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"username\": \"string\",\n  \"password\": \"stringstring\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Updates the data of an existing user."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"username\": \"string\",\n  \"password\": \"stringstring\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 8913,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"ADMIN\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Delete user",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Deletes a user by their ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "page",
+							"item": [
+								{
+									"name": "role",
+									"item": [
+										{
+											"name": "{role}",
+											"item": [
+												{
+													"name": "Get paginated users by role",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/users/page/role/customer?page=0&size=5&sort=id&sort=asc",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"users",
+																"page",
+																"role",
+																"customer"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0"
+																},
+																{
+																	"key": "size",
+																	"value": "5"
+																},
+																{
+																	"key": "sort",
+																	"value": "id"
+																},
+																{
+																	"key": "sort",
+																	"value": "asc"
+																}
+															]
+														},
+														"description": "Returns a paginated list of users filtered by role."
+													},
+													"response": [
+														{
+															"name": "OK",
+															"originalRequest": {
+																"method": "GET",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "*/*"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/users/page/role/:role?page=0&size=10&sort=asc",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"users",
+																		"page",
+																		"role",
+																		":role"
+																	],
+																	"query": [
+																		{
+																			"key": "page",
+																			"value": "0"
+																		},
+																		{
+																			"key": "size",
+																			"value": "10"
+																		},
+																		{
+																			"key": "sort",
+																			"value": "asc"
+																		}
+																	],
+																	"variable": [
+																		{
+																			"key": "role"
+																		}
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "text",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "*/*"
+																}
+															],
+															"cookie": [],
+															"body": "{\n  \"totalPages\": 4154,\n  \"totalElements\": 1012,\n  \"pageable\": {\n    \"paged\": false,\n    \"pageNumber\": 6937,\n    \"pageSize\": 3155,\n    \"offset\": 9260,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": true,\n      \"unsorted\": false\n    },\n    \"unpaged\": true\n  },\n  \"first\": false,\n  \"last\": false,\n  \"size\": 9678,\n  \"content\": [\n    {\n      \"id\": 9010,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"role\": \"CUSTOMER\"\n    },\n    {\n      \"id\": 4366,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"role\": \"ADMIN\"\n    }\n  ],\n  \"number\": 2658,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": false,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 7098,\n  \"empty\": false\n}"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Get paginated users",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/users/page?page=0&size=2&sort=id&sort=desc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"users",
+												"page"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "2"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "desc"
+												}
+											]
+										},
+										"description": "Returns a paginated list of users."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/users/page?page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"users",
+														"page"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 4154,\n  \"totalElements\": 1012,\n  \"pageable\": {\n    \"paged\": false,\n    \"pageNumber\": 6937,\n    \"pageSize\": 3155,\n    \"offset\": 9260,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": true,\n      \"unsorted\": false\n    },\n    \"unpaged\": true\n  },\n  \"first\": false,\n  \"last\": false,\n  \"size\": 9678,\n  \"content\": [\n    {\n      \"id\": 9010,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"role\": \"CUSTOMER\"\n    },\n    {\n      \"id\": 4366,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"role\": \"ADMIN\"\n    }\n  ],\n  \"number\": 2658,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": false,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 7098,\n  \"empty\": false\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get all users",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								},
+								"description": "Returns a list of all users."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 2071,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"role\": \"ADMIN\"\n  },\n  {\n    \"id\": 6556,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"role\": \"ADMIN\"\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "scenes",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get scene by ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Returns the details of a scene by its ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/scenes/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"scenes",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 5117,\n  \"name\": \"string\",\n  \"lightingConfigJson\": \"string\",\n  \"cameraConfigJson\": \"string\",\n  \"thumbnail\": \"string\",\n  \"createdAt\": \"1968-12-31T12:11:21.651Z\",\n  \"updatedAt\": \"1959-06-19T17:10:32.486Z\",\n  \"ownerId\": 1131,\n  \"designId\": 7988\n}"
+										}
+									]
+								},
+								{
+									"name": "Update scene",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"lightingConfigJson\": \"string\",\n  \"cameraConfigJson\": \"string\",\n  \"thumbnail\": \"string\",\n  \"createdAt\": \"1991-02-20T09:01:21.860Z\",\n  \"updatedAt\": \"1958-02-14T16:39:41.022Z\",\n  \"ownerId\": 307,\n  \"designId\": 1462\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Updates the data of an existing scene."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"string\",\n  \"lightingConfigJson\": \"string\",\n  \"cameraConfigJson\": \"string\",\n  \"thumbnail\": \"string\",\n  \"createdAt\": \"1991-02-20T09:01:21.860Z\",\n  \"updatedAt\": \"1958-02-14T16:39:41.022Z\",\n  \"ownerId\": 307,\n  \"designId\": 1462\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/scenes/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"scenes",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 5117,\n  \"name\": \"string\",\n  \"lightingConfigJson\": \"string\",\n  \"cameraConfigJson\": \"string\",\n  \"thumbnail\": \"string\",\n  \"createdAt\": \"1968-12-31T12:11:21.651Z\",\n  \"updatedAt\": \"1959-06-19T17:10:32.486Z\",\n  \"ownerId\": 1131,\n  \"designId\": 7988\n}"
+										}
+									]
+								},
+								{
+									"name": "Delete scene",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Deletes a scene by its ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/scenes/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"scenes",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "page",
+							"item": [
+								{
+									"name": "Get paginated scenes",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes/page?page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes",
+												"page"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a paginated list of all scenes."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/scenes/page?page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"scenes",
+														"page"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 4880,\n  \"totalElements\": 5533,\n  \"pageable\": {\n    \"paged\": true,\n    \"pageNumber\": 5021,\n    \"pageSize\": 5774,\n    \"offset\": 7528,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": true,\n      \"unsorted\": false\n    },\n    \"unpaged\": false\n  },\n  \"first\": false,\n  \"last\": true,\n  \"size\": 4697,\n  \"content\": [\n    {\n      \"id\": 4841,\n      \"name\": \"string\",\n      \"lightingConfigJson\": \"string\",\n      \"cameraConfigJson\": \"string\",\n      \"thumbnail\": \"string\",\n      \"createdAt\": \"1946-02-05T15:12:49.054Z\",\n      \"updatedAt\": \"1977-03-14T19:55:25.620Z\",\n      \"ownerId\": 4871,\n      \"designId\": 7546\n    },\n    {\n      \"id\": 7554,\n      \"name\": \"string\",\n      \"lightingConfigJson\": \"string\",\n      \"cameraConfigJson\": \"string\",\n      \"thumbnail\": \"string\",\n      \"createdAt\": \"1994-10-12T00:57:13.362Z\",\n      \"updatedAt\": \"1950-09-18T21:07:00.075Z\",\n      \"ownerId\": 5699,\n      \"designId\": 8421\n    }\n  ],\n  \"number\": 9076,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 7931,\n  \"empty\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "created-between",
+							"item": [
+								{
+									"name": "Get scenes created between dates (paginated)",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes/created-between?start=2018-08-31T03:03:19.590Z&end=2018-08-31T03:03:19.590Z&page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes",
+												"created-between"
+											],
+											"query": [
+												{
+													"key": "start",
+													"value": "2018-08-31T03:03:19.590Z",
+													"description": "(Required) "
+												},
+												{
+													"key": "end",
+													"value": "2018-08-31T03:03:19.590Z",
+													"description": "(Required) "
+												},
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a paginated list of scenes created between two dates."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/scenes/created-between?start=2018-08-31T03:03:19.590Z&end=2018-08-31T03:03:19.590Z&page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"scenes",
+														"created-between"
+													],
+													"query": [
+														{
+															"key": "start",
+															"value": "2018-08-31T03:03:19.590Z",
+															"description": "(Required) "
+														},
+														{
+															"key": "end",
+															"value": "2018-08-31T03:03:19.590Z",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 4880,\n  \"totalElements\": 5533,\n  \"pageable\": {\n    \"paged\": true,\n    \"pageNumber\": 5021,\n    \"pageSize\": 5774,\n    \"offset\": 7528,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": true,\n      \"unsorted\": false\n    },\n    \"unpaged\": false\n  },\n  \"first\": false,\n  \"last\": true,\n  \"size\": 4697,\n  \"content\": [\n    {\n      \"id\": 4841,\n      \"name\": \"string\",\n      \"lightingConfigJson\": \"string\",\n      \"cameraConfigJson\": \"string\",\n      \"thumbnail\": \"string\",\n      \"createdAt\": \"1946-02-05T15:12:49.054Z\",\n      \"updatedAt\": \"1977-03-14T19:55:25.620Z\",\n      \"ownerId\": 4871,\n      \"designId\": 7546\n    },\n    {\n      \"id\": 7554,\n      \"name\": \"string\",\n      \"lightingConfigJson\": \"string\",\n      \"cameraConfigJson\": \"string\",\n      \"thumbnail\": \"string\",\n      \"createdAt\": \"1994-10-12T00:57:13.362Z\",\n      \"updatedAt\": \"1950-09-18T21:07:00.075Z\",\n      \"ownerId\": 5699,\n      \"designId\": 8421\n    }\n  ],\n  \"number\": 9076,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 7931,\n  \"empty\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "count-by-owner",
+							"item": [
+								{
+									"name": "Count scenes by owner",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes/count-by-owner?ownerId=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes",
+												"count-by-owner"
+											],
+											"query": [
+												{
+													"key": "ownerId",
+													"value": "1",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Returns the number of scenes belonging to an owner."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/scenes/count-by-owner?ownerId=3366",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"scenes",
+														"count-by-owner"
+													],
+													"query": [
+														{
+															"key": "ownerId",
+															"value": "3366",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "3366"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "by-owner",
+							"item": [
+								{
+									"name": "Get scenes by owner (paginated)",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes/by-owner?ownerId=3366&page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes",
+												"by-owner"
+											],
+											"query": [
+												{
+													"key": "ownerId",
+													"value": "3366",
+													"description": "(Required) "
+												},
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a paginated list of scenes belonging to an owner."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/scenes/by-owner?ownerId=3366&page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"scenes",
+														"by-owner"
+													],
+													"query": [
+														{
+															"key": "ownerId",
+															"value": "3366",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 4880,\n  \"totalElements\": 5533,\n  \"pageable\": {\n    \"paged\": true,\n    \"pageNumber\": 5021,\n    \"pageSize\": 5774,\n    \"offset\": 7528,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": true,\n      \"unsorted\": false\n    },\n    \"unpaged\": false\n  },\n  \"first\": false,\n  \"last\": true,\n  \"size\": 4697,\n  \"content\": [\n    {\n      \"id\": 4841,\n      \"name\": \"string\",\n      \"lightingConfigJson\": \"string\",\n      \"cameraConfigJson\": \"string\",\n      \"thumbnail\": \"string\",\n      \"createdAt\": \"1946-02-05T15:12:49.054Z\",\n      \"updatedAt\": \"1977-03-14T19:55:25.620Z\",\n      \"ownerId\": 4871,\n      \"designId\": 7546\n    },\n    {\n      \"id\": 7554,\n      \"name\": \"string\",\n      \"lightingConfigJson\": \"string\",\n      \"cameraConfigJson\": \"string\",\n      \"thumbnail\": \"string\",\n      \"createdAt\": \"1994-10-12T00:57:13.362Z\",\n      \"updatedAt\": \"1950-09-18T21:07:00.075Z\",\n      \"ownerId\": 5699,\n      \"designId\": 8421\n    }\n  ],\n  \"number\": 9076,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 7931,\n  \"empty\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "by-name-and-owner",
+							"item": [
+								{
+									"name": "Get scene by name and owner",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes/by-name-and-owner?name=string&ownerId=3366",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes",
+												"by-name-and-owner"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "string",
+													"description": "(Required) "
+												},
+												{
+													"key": "ownerId",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Returns a scene by its name and owner ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/scenes/by-name-and-owner?name=string&ownerId=3366",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"scenes",
+														"by-name-and-owner"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "string",
+															"description": "(Required) "
+														},
+														{
+															"key": "ownerId",
+															"value": "3366",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 5117,\n  \"name\": \"string\",\n  \"lightingConfigJson\": \"string\",\n  \"cameraConfigJson\": \"string\",\n  \"thumbnail\": \"string\",\n  \"createdAt\": \"1968-12-31T12:11:21.651Z\",\n  \"updatedAt\": \"1959-06-19T17:10:32.486Z\",\n  \"ownerId\": 1131,\n  \"designId\": 7988\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Create scene",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"createdAt\": \"1959-05-30T01:54:45.725Z\",\n  \"designId\": 6368,\n  \"name\": \"string\",\n  \"ownerId\": 2997,\n  \"updatedAt\": \"1988-12-04T07:40:55.258Z\",\n  \"lightingConfigJson\": \"string\",\n  \"cameraConfigJson\": \"string\",\n  \"thumbnail\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/scenes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"scenes"
+									]
+								},
+								"description": "Creates a new scene and returns it."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"createdAt\": \"1959-05-30T01:54:45.725Z\",\n  \"designId\": 6368,\n  \"name\": \"string\",\n  \"ownerId\": 2997,\n  \"updatedAt\": \"1988-12-04T07:40:55.258Z\",\n  \"lightingConfigJson\": \"string\",\n  \"cameraConfigJson\": \"string\",\n  \"thumbnail\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/scenes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"scenes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 5117,\n  \"name\": \"string\",\n  \"lightingConfigJson\": \"string\",\n  \"cameraConfigJson\": \"string\",\n  \"thumbnail\": \"string\",\n  \"createdAt\": \"1968-12-31T12:11:21.651Z\",\n  \"updatedAt\": \"1959-06-19T17:10:32.486Z\",\n  \"ownerId\": 1131,\n  \"designId\": 7988\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "designs",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get design by ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/designs/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"designs",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Returns the design with the given ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/designs/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"designs",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 6467,\n  \"name\": \"string\",\n  \"textureMapUrl\": \"string\",\n  \"materialsJson\": \"string\",\n  \"partsColorsJson\": \"string\",\n  \"logoConfigJson\": \"string\",\n  \"textConfigJson\": \"string\",\n  \"assetId\": 25\n}"
+										}
+									]
+								},
+								{
+									"name": "Update design",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"textureMapUrl\": \"string\",\n  \"materialsJson\": \"string\",\n  \"partsColorsJson\": \"string\",\n  \"logoConfigJson\": \"string\",\n  \"textConfigJson\": \"string\",\n  \"assetId\": 2695\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/designs/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"designs",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Updates an existing design."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"string\",\n  \"textureMapUrl\": \"string\",\n  \"materialsJson\": \"string\",\n  \"partsColorsJson\": \"string\",\n  \"logoConfigJson\": \"string\",\n  \"textConfigJson\": \"string\",\n  \"assetId\": 2695\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/designs/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"designs",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 6467,\n  \"name\": \"string\",\n  \"textureMapUrl\": \"string\",\n  \"materialsJson\": \"string\",\n  \"partsColorsJson\": \"string\",\n  \"logoConfigJson\": \"string\",\n  \"textConfigJson\": \"string\",\n  \"assetId\": 25\n}"
+										}
+									]
+								},
+								{
+									"name": "Delete design",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/designs/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"designs",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Deletes a design by its ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/designs/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"designs",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "page",
+							"item": [
+								{
+									"name": "Get paginated designs",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/designs/page?page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"designs",
+												"page"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a page of designs."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/designs/page?page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"designs",
+														"page"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 2805,\n  \"totalElements\": 9317,\n  \"pageable\": {\n    \"paged\": true,\n    \"pageNumber\": 9400,\n    \"pageSize\": 3146,\n    \"offset\": 7106,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": false\n  },\n  \"first\": false,\n  \"last\": true,\n  \"size\": 1333,\n  \"content\": [\n    {\n      \"id\": 5418,\n      \"name\": \"string\",\n      \"textureMapUrl\": \"string\",\n      \"materialsJson\": \"string\",\n      \"partsColorsJson\": \"string\",\n      \"logoConfigJson\": \"string\",\n      \"textConfigJson\": \"string\",\n      \"assetId\": 5153\n    },\n    {\n      \"id\": 1615,\n      \"name\": \"string\",\n      \"textureMapUrl\": \"string\",\n      \"materialsJson\": \"string\",\n      \"partsColorsJson\": \"string\",\n      \"logoConfigJson\": \"string\",\n      \"textConfigJson\": \"string\",\n      \"assetId\": 7815\n    }\n  ],\n  \"number\": 942,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 4929,\n  \"empty\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "by-assets",
+							"item": [
+								{
+									"name": "Get designs by assetIds (paginated)",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/designs/by-assets?assetIds=1&assetIds=2&page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"designs",
+												"by-assets"
+											],
+											"query": [
+												{
+													"key": "assetIds",
+													"value": "1",
+													"description": "(Required) "
+												},
+												{
+													"key": "assetIds",
+													"value": "2",
+													"description": "(Required) "
+												},
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a page of designs filtered by assetIds."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/designs/by-assets?assetIds=8709&page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"designs",
+														"by-assets"
+													],
+													"query": [
+														{
+															"key": "assetIds",
+															"value": "8709",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 2805,\n  \"totalElements\": 9317,\n  \"pageable\": {\n    \"paged\": true,\n    \"pageNumber\": 9400,\n    \"pageSize\": 3146,\n    \"offset\": 7106,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": false\n  },\n  \"first\": false,\n  \"last\": true,\n  \"size\": 1333,\n  \"content\": [\n    {\n      \"id\": 5418,\n      \"name\": \"string\",\n      \"textureMapUrl\": \"string\",\n      \"materialsJson\": \"string\",\n      \"partsColorsJson\": \"string\",\n      \"logoConfigJson\": \"string\",\n      \"textConfigJson\": \"string\",\n      \"assetId\": 5153\n    },\n    {\n      \"id\": 1615,\n      \"name\": \"string\",\n      \"textureMapUrl\": \"string\",\n      \"materialsJson\": \"string\",\n      \"partsColorsJson\": \"string\",\n      \"logoConfigJson\": \"string\",\n      \"textConfigJson\": \"string\",\n      \"assetId\": 7815\n    }\n  ],\n  \"number\": 942,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 4929,\n  \"empty\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "by-asset",
+							"item": [
+								{
+									"name": "{assetId}",
+									"item": [
+										{
+											"name": "Get design by assetId",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/designs/by-asset/:assetId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"designs",
+														"by-asset",
+														":assetId"
+													],
+													"variable": [
+														{
+															"key": "assetId",
+															"value": "3366",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "Returns the design associated with the given assetId."
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/designs/by-asset/:assetId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"designs",
+																"by-asset",
+																":assetId"
+															],
+															"variable": [
+																{
+																	"key": "assetId"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": 6467,\n  \"name\": \"string\",\n  \"textureMapUrl\": \"string\",\n  \"materialsJson\": \"string\",\n  \"partsColorsJson\": \"string\",\n  \"logoConfigJson\": \"string\",\n  \"textConfigJson\": \"string\",\n  \"assetId\": 25\n}"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get all designs",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/designs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"designs"
+									]
+								},
+								"description": "Returns a list of all designs."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/designs",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"designs"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 8237,\n    \"name\": \"string\",\n    \"textureMapUrl\": \"string\",\n    \"materialsJson\": \"string\",\n    \"partsColorsJson\": \"string\",\n    \"logoConfigJson\": \"string\",\n    \"textConfigJson\": \"string\",\n    \"assetId\": 9476\n  },\n  {\n    \"id\": 1484,\n    \"name\": \"string\",\n    \"textureMapUrl\": \"string\",\n    \"materialsJson\": \"string\",\n    \"partsColorsJson\": \"string\",\n    \"logoConfigJson\": \"string\",\n    \"textConfigJson\": \"string\",\n    \"assetId\": 3545\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "Create design",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"assetId\": 1790,\n  \"name\": \"string\",\n  \"textureMapUrl\": \"string\",\n  \"materialsJson\": \"string\",\n  \"partsColorsJson\": \"string\",\n  \"logoConfigJson\": \"string\",\n  \"textConfigJson\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/designs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"designs"
+									]
+								},
+								"description": "Creates a new design and returns it."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"assetId\": 1790,\n  \"name\": \"string\",\n  \"textureMapUrl\": \"string\",\n  \"materialsJson\": \"string\",\n  \"partsColorsJson\": \"string\",\n  \"logoConfigJson\": \"string\",\n  \"textConfigJson\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/designs",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"designs"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 6467,\n  \"name\": \"string\",\n  \"textureMapUrl\": \"string\",\n  \"materialsJson\": \"string\",\n  \"partsColorsJson\": \"string\",\n  \"logoConfigJson\": \"string\",\n  \"textConfigJson\": \"string\",\n  \"assetId\": 25\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "customers",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get customer by ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Returns the details of a customer by their ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/customers/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customers",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 221,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"profileImageUrl\": \"string\",\n  \"preferredLanguage\": \"FR\",\n  \"isVerified\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "Update customer",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"username\": \"string\",\n  \"password\": \"stringstring\",\n  \"profileImageUrl\": \"string\",\n  \"preferredLanguage\": \"DE\",\n  \"isVerified\": true\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Updates the data of an existing customer."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"username\": \"string\",\n  \"password\": \"stringstring\",\n  \"profileImageUrl\": \"string\",\n  \"preferredLanguage\": \"DE\",\n  \"isVerified\": true\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/customers/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customers",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 221,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"profileImageUrl\": \"string\",\n  \"preferredLanguage\": \"FR\",\n  \"isVerified\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "Delete customer",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Deletes a customer by their ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/customers/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customers",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "page",
+							"item": [
+								{
+									"name": "Get paginated customers",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/page?page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												"page"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a paginated list of customers."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/customers/page?page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customers",
+														"page"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 5042,\n  \"totalElements\": 3685,\n  \"pageable\": {\n    \"paged\": false,\n    \"pageNumber\": 9506,\n    \"pageSize\": 9562,\n    \"offset\": 2621,\n    \"sort\": {\n      \"sorted\": true,\n      \"empty\": true,\n      \"unsorted\": true\n    },\n    \"unpaged\": true\n  },\n  \"first\": true,\n  \"last\": true,\n  \"size\": 3810,\n  \"content\": [\n    {\n      \"id\": 3355,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"role\": \"CUSTOMER\",\n      \"profileImageUrl\": \"string\",\n      \"preferredLanguage\": \"FR\",\n      \"isVerified\": true\n    },\n    {\n      \"id\": 1039,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"role\": \"ADMIN\",\n      \"profileImageUrl\": \"string\",\n      \"preferredLanguage\": \"FR\",\n      \"isVerified\": false\n    }\n  ],\n  \"number\": 5319,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": false,\n    \"unsorted\": true\n  },\n  \"numberOfElements\": 5733,\n  \"empty\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get all customers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/customers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"customers"
+									]
+								},
+								"description": "Returns a list of all customers."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/customers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 2391,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"role\": \"CUSTOMER\",\n    \"profileImageUrl\": \"string\",\n    \"preferredLanguage\": \"EN\",\n    \"isVerified\": true\n  },\n  {\n    \"id\": 3361,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"role\": \"CUSTOMER\",\n    \"profileImageUrl\": \"string\",\n    \"preferredLanguage\": \"DE\",\n    \"isVerified\": false\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "Create customer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"string\",\n  \"password\": \"stringstring\",\n  \"role\": \"CUSTOMER\",\n  \"username\": \"stri\",\n  \"profileImageUrl\": \"string\",\n  \"preferredLanguage\": \"FR\",\n  \"isVerified\": true\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/customers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"customers"
+									]
+								},
+								"description": "Creates a new customer and returns it."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"string\",\n  \"password\": \"stringstring\",\n  \"role\": \"CUSTOMER\",\n  \"username\": \"stri\",\n  \"profileImageUrl\": \"string\",\n  \"preferredLanguage\": \"FR\",\n  \"isVerified\": true\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/customers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 221,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"profileImageUrl\": \"string\",\n  \"preferredLanguage\": \"FR\",\n  \"isVerified\": false\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "assets",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get asset by ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/assets/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"assets",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Returns the details of an asset by its ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/assets/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"assets",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 3322,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"glbPath\": \"string\",\n  \"thumbnailDefault\": \"string\",\n  \"partsConfigJson\": \"string\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Update asset",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"glbPath\": \"string\",\n  \"thumbnailDefault\": \"string\",\n  \"partsConfigJson\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/assets/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"assets",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Updates the data of an existing asset."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"glbPath\": \"string\",\n  \"thumbnailDefault\": \"string\",\n  \"partsConfigJson\": \"string\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/assets/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"assets",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 3322,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"glbPath\": \"string\",\n  \"thumbnailDefault\": \"string\",\n  \"partsConfigJson\": \"string\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Delete asset",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/assets/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"assets",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Deletes an asset by its ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/assets/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"assets",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "search",
+							"item": [
+								{
+									"name": "Search assets by name (paginated)",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/assets/search?name=string&page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"assets",
+												"search"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "string",
+													"description": "(Required) "
+												},
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a paginated list of assets whose name contains the given string (case-insensitive)."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/assets/search?name=string&page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"assets",
+														"search"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "string",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 3537,\n  \"totalElements\": 5768,\n  \"pageable\": {\n    \"paged\": false,\n    \"pageNumber\": 3726,\n    \"pageSize\": 4434,\n    \"offset\": 2663,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": false\n  },\n  \"first\": true,\n  \"last\": false,\n  \"size\": 1305,\n  \"content\": [\n    {\n      \"id\": 2764,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"glbPath\": \"string\",\n      \"thumbnailDefault\": \"string\",\n      \"partsConfigJson\": \"string\"\n    },\n    {\n      \"id\": 6907,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"glbPath\": \"string\",\n      \"thumbnailDefault\": \"string\",\n      \"partsConfigJson\": \"string\"\n    }\n  ],\n  \"number\": 2088,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 8238,\n  \"empty\": false\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "page",
+							"item": [
+								{
+									"name": "Get paginated assets",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/assets/page?page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"assets",
+												"page"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a paginated list of assets."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/assets/page?page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"assets",
+														"page"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 3537,\n  \"totalElements\": 5768,\n  \"pageable\": {\n    \"paged\": false,\n    \"pageNumber\": 3726,\n    \"pageSize\": 4434,\n    \"offset\": 2663,\n    \"sort\": {\n      \"sorted\": false,\n      \"empty\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": false\n  },\n  \"first\": true,\n  \"last\": false,\n  \"size\": 1305,\n  \"content\": [\n    {\n      \"id\": 2764,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"glbPath\": \"string\",\n      \"thumbnailDefault\": \"string\",\n      \"partsConfigJson\": \"string\"\n    },\n    {\n      \"id\": 6907,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"glbPath\": \"string\",\n      \"thumbnailDefault\": \"string\",\n      \"partsConfigJson\": \"string\"\n    }\n  ],\n  \"number\": 2088,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 8238,\n  \"empty\": false\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get all assets",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/assets",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"assets"
+									]
+								},
+								"description": "Returns a list of all assets."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/assets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"assets"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 7972,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"glbPath\": \"string\",\n    \"thumbnailDefault\": \"string\",\n    \"partsConfigJson\": \"string\"\n  },\n  {\n    \"id\": 3555,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"glbPath\": \"string\",\n    \"thumbnailDefault\": \"string\",\n    \"partsConfigJson\": \"string\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "Create asset",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"glbPath\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"thumbnailDefault\": \"string\",\n  \"partsConfigJson\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/assets",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"assets"
+									]
+								},
+								"description": "Creates a new asset and returns it."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"glbPath\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"thumbnailDefault\": \"string\",\n  \"partsConfigJson\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/assets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"assets"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 3322,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"glbPath\": \"string\",\n  \"thumbnailDefault\": \"string\",\n  \"partsConfigJson\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "admins",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get administrator by ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/admins/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"admins",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Returns the details of an administrator by their ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/admins/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"admins",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 3314,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"CUSTOMER\",\n  \"adminLevel\": 8633,\n  \"department\": \"DESIGN\",\n  \"departmentImageUrl\": \"string\",\n  \"lastLogin\": \"1951-10-28T06:21:17.518Z\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Update administrator",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"username\": \"string\",\n  \"password\": \"stringstring\",\n  \"adminLevel\": 6706,\n  \"department\": \"DESIGN\",\n  \"departmentImageUrl\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/admins/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"admins",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Updates the data of an existing administrator."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"string\",\n  \"role\": \"ADMIN\",\n  \"username\": \"string\",\n  \"password\": \"stringstring\",\n  \"adminLevel\": 6706,\n  \"department\": \"DESIGN\",\n  \"departmentImageUrl\": \"string\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/admins/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"admins",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 3314,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"CUSTOMER\",\n  \"adminLevel\": 8633,\n  \"department\": \"DESIGN\",\n  \"departmentImageUrl\": \"string\",\n  \"lastLogin\": \"1951-10-28T06:21:17.518Z\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Delete administrator",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/admins/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"admins",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3366",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Deletes an administrator by their ID."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/admins/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"admins",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "page",
+							"item": [
+								{
+									"name": "Get paginated administrators",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/admins/page?page=0&size=10&sort=id&sort=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"admins",
+												"page"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												},
+												{
+													"key": "sort",
+													"value": "id"
+												},
+												{
+													"key": "sort",
+													"value": "asc"
+												}
+											]
+										},
+										"description": "Returns a paginated list of administrators."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/admins/page?page=0&size=10&sort=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"admins",
+														"page"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "sort",
+															"value": "asc"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalPages\": 5911,\n  \"totalElements\": 1837,\n  \"pageable\": {\n    \"paged\": true,\n    \"pageNumber\": 4953,\n    \"pageSize\": 8288,\n    \"offset\": 6147,\n    \"sort\": {\n      \"sorted\": true,\n      \"empty\": true,\n      \"unsorted\": false\n    },\n    \"unpaged\": false\n  },\n  \"first\": true,\n  \"last\": true,\n  \"size\": 2535,\n  \"content\": [\n    {\n      \"id\": 5717,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"role\": \"ADMIN\",\n      \"adminLevel\": 7024,\n      \"department\": \"DESIGN\",\n      \"departmentImageUrl\": \"string\",\n      \"lastLogin\": \"1987-09-11T22:17:11.250Z\"\n    },\n    {\n      \"id\": 7076,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"role\": \"CUSTOMER\",\n      \"adminLevel\": 5336,\n      \"department\": \"SUPPORT\",\n      \"departmentImageUrl\": \"string\",\n      \"lastLogin\": \"1990-07-03T23:35:41.692Z\"\n    }\n  ],\n  \"number\": 8155,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": false,\n    \"unsorted\": false\n  },\n  \"numberOfElements\": 3786,\n  \"empty\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get all administrators",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/admins",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"admins"
+									]
+								},
+								"description": "Returns a list of all administrators."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/admins",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"admins"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 8803,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"role\": \"CUSTOMER\",\n    \"adminLevel\": 3342,\n    \"department\": \"SALES\",\n    \"departmentImageUrl\": \"string\",\n    \"lastLogin\": \"2006-05-05T02:18:05.655Z\"\n  },\n  {\n    \"id\": 5071,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"role\": \"ADMIN\",\n    \"adminLevel\": 6737,\n    \"department\": \"HR\",\n    \"departmentImageUrl\": \"string\",\n    \"lastLogin\": \"1950-01-15T03:08:08.981Z\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "Create administrator",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"department\": \"DESIGN\",\n  \"email\": \"string\",\n  \"password\": \"stringstring\",\n  \"role\": \"ADMIN\",\n  \"username\": \"string\",\n  \"adminLevel\": 2866,\n  \"departmentImageUrl\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/admins",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"admins"
+									]
+								},
+								"description": "Creates a new administrator and returns it."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"department\": \"DESIGN\",\n  \"email\": \"string\",\n  \"password\": \"stringstring\",\n  \"role\": \"ADMIN\",\n  \"username\": \"string\",\n  \"adminLevel\": 2866,\n  \"departmentImageUrl\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/admins",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"admins"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 3314,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"CUSTOMER\",\n  \"adminLevel\": 8633,\n  \"department\": \"DESIGN\",\n  \"departmentImageUrl\": \"string\",\n  \"lastLogin\": \"1951-10-28T06:21:17.518Z\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081"
+		}
+	]
+}
