@@ -514,7 +514,7 @@ public enum Department {
 ## Resources
 
 -   **Kanban Board:** [Kanban's link](https://github.com/users/krub-dev/projects/2)
--   **Presentation Slides:** [Presentation's link]()
+-   **Presentation Slides:** [Presentation's link](https://gamma.app/docs/Your-Vision-Visualized-8x4bz2i70z8ek1j?)
 -   **API Docs (Swagger):** `/swagger-ui.html`
 
 ---
