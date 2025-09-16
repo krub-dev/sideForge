@@ -1,0 +1,594 @@
+{
+	"info": {
+		"_postman_id": "44433ff1-ca5e-4fee-a437-61fca375a674",
+		"name": "sideForge Demo",
+		"description": "DEMO collection for sideForge API. Shows both admin and customer flows, proper CRUD, role restrictions. Now supports two designs and two scenes (each scene must use a unique design per model constraints).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47121607",
+		"_collection_link": "https://krub-dev-8744832.postman.co/workspace/krub's-Workspace~3a764723-df71-4388-83da-dee967faa5a0/collection/47121607-44433ff1-ca5e-4fee-a437-61fca375a674?action=share&source=collection_link&creator=47121607"
+	},
+	"item": [
+		{
+			"name": "1. Register customer (user)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"if(json && json.id) {",
+							"    pm.collectionVariables.set('customerId', json.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"demoUser\",\n  \"email\": \"demo@sideforge.com\",\n  \"password\": \"123456abc\",\n  \"profileImageUrl\": \"https://example.com/img.png\",\n  \"preferredLanguage\": \"EN\",\n  \"isVerified\": false,\n  \"role\": \"CUSTOMER\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/customers",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Registers a customer user for the demo (role is always required)."
+			},
+			"response": []
+		},
+		{
+			"name": "2. Create asset (admin)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"if(json && json.id) {",
+							"    pm.collectionVariables.set('assetId', json.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Demo Mug\",\n  \"description\": \"Basic white mug for demo purposes\",\n  \"glbPath\": \"/assets/model/demo-asset.glb\",\n  \"thumbnailDefault\": \"https://example.com/mug.png\",\n  \"partsConfigJson\": \"{\\\"handle\\\":{},\\\"base\\\":{}}\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/assets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"assets"
+					]
+				},
+				"description": "Creates an asset (e.g. mug) as admin."
+			},
+			"response": []
+		},
+		{
+			"name": "3. Create design 1 for asset (admin)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"if(json && json.id) {",
+							"    pm.collectionVariables.set('designId', json.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Mug with logo\",\n  \"textureMapUrl\": \"https://example.com/mug-uv.png\",\n  \"materialsJson\": \"{\\\"base\\\":\\\"CERAMIC\\\"}\",\n  \"partsColorsJson\": \"{\\\"handle\\\":\\\"#FFFFFF\\\",\\\"base\\\":\\\"#0080FF\\\"}\",\n  \"logoConfigJson\": \"{\\\"url\\\":\\\"https://example.com/logo.png\\\"}\",\n  \"textConfigJson\": \"{\\\"text\\\":\\\"Hello Demo!\\\"}\",\n  \"assetId\": {{assetId}}\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/designs",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"designs"
+					]
+				},
+				"description": "Creates the first design for the asset."
+			},
+			"response": []
+		},
+		{
+			"name": "4. Create design 2 for asset (admin)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"if(json && json.id) {",
+							"    pm.collectionVariables.set('designId2', json.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Mug with text\",\n  \"textureMapUrl\": \"https://example.com/mug-uv2.png\",\n  \"materialsJson\": \"{\\\"base\\\":\\\"CERAMIC\\\"}\",\n  \"partsColorsJson\": \"{\\\"handle\\\":\\\"#FFFFFF\\\",\\\"base\\\":\\\"#FF0000\\\"}\",\n  \"logoConfigJson\": \"{\\\"url\\\":\\\"https://example.com/another-logo.png\\\"}\",\n  \"textConfigJson\": \"{\\\"text\\\":\\\"Scene 2!\\\"}\",\n  \"assetId\": {{assetId}}\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/designs",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"designs"
+					]
+				},
+				"description": "Creates the second design for the asset."
+			},
+			"response": []
+		},
+		{
+			"name": "5. Create scene 1 for customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"if(json && json.id) {",
+							"    pm.collectionVariables.set('sceneId1', json.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Demo Scene 1\",\n  \"lightingConfigJson\": \"{}\",\n  \"cameraConfigJson\": \"{}\",\n  \"thumbnail\": \"https://example.com/scene1.png\",\n  \"createdAt\": \"16-09-2025 01:00:00\",\n  \"updatedAt\": \"16-09-2025 01:00:00\",\n  \"ownerId\": {{customerId}},\n  \"designId\": {{designId}}\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/scenes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"scenes"
+					]
+				},
+				"description": "Creates a first scene for the customer user."
+			},
+			"response": []
+		},
+		{
+			"name": "6. Create scene 2 for customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"if(json && json.id) {",
+							"    pm.collectionVariables.set('sceneId2', json.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Demo Scene 2\",\n  \"lightingConfigJson\": \"{\\\"lights\\\":2}\",\n  \"cameraConfigJson\": \"{\\\"angle\\\":30}\",\n  \"thumbnail\": \"https://example.com/scene2.png\",\n  \"createdAt\": \"16-09-2025 01:10:00\",\n  \"updatedAt\": \"16-09-2025 01:10:00\",\n  \"ownerId\": {{customerId}},\n  \"designId\": {{designId2}}\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/scenes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"scenes"
+					]
+				},
+				"description": "Creates a second scene for the customer user, with a different design."
+			},
+			"response": []
+		},
+		{
+			"name": "7. List scenes by owner (pagination)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/scenes/by-owner?ownerId={{customerId}}&page=0&size=10&sort=id,asc",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"scenes",
+						"by-owner"
+					],
+					"query": [
+						{
+							"key": "ownerId",
+							"value": "{{customerId}}"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "sort",
+							"value": "id,asc"
+						}
+					]
+				},
+				"description": "Lists all scenes owned by the customer."
+			},
+			"response": []
+		},
+		{
+			"name": "8. Get all users (admin)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Lists all users (should work for admin)."
+			},
+			"response": []
+		},
+		{
+			"name": "9. Get all users (customer, not allowed)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456abc",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demoUser",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Should return 403 Forbidden or 401 Unauthorized (customer cannot access all users)."
+			},
+			"response": []
+		},
+		{
+			"name": "10. Update asset (admin)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Demo Mug Updated\",\n  \"description\": \"Updated mug for demo purposes\",\n  \"glbPath\": \"/assets/model/demo-asset.glb\",\n  \"thumbnailDefault\": \"https://example.com/mug-updated.png\",\n  \"partsConfigJson\": \"{\\\"handle\\\":{},\\\"base\\\":{\\\"color\\\":\\\"#FF0000\\\"}}\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/assets/{{assetId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"assets",
+						"{{assetId}}"
+					]
+				},
+				"description": "Updates the asset."
+			},
+			"response": []
+		},
+		{
+			"name": "11. Update design (admin)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Mug with logo UPDATED\",\n  \"textureMapUrl\": \"https://example.com/mug-uv-updated.png\",\n  \"materialsJson\": \"{\\\"base\\\":\\\"PORCELAIN\\\"}\",\n  \"partsColorsJson\": \"{\\\"handle\\\":\\\"#000000\\\",\\\"base\\\":\\\"#00FF00\\\"}\",\n  \"logoConfigJson\": \"{\\\"url\\\":\\\"https://example.com/logo2.png\\\"}\",\n  \"textConfigJson\": \"{\\\"text\\\":\\\"Updated!\\\"}\",\n  \"assetId\": {{assetId}}\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/designs/{{designId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"designs",
+						"{{designId}}"
+					]
+				},
+				"description": "Updates the design."
+			},
+			"response": []
+		},
+		{
+			"name": "12. Update scene 1 (admin)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Demo Scene 1 Updated\",\n  \"lightingConfigJson\": \"{\\\"lights\\\":4}\",\n  \"cameraConfigJson\": \"{\\\"angle\\\":45}\",\n  \"thumbnail\": \"https://example.com/scene1-updated.png\",\n  \"createdAt\": \"16-09-2025 01:00:00\",\n  \"updatedAt\": \"16-09-2025 01:20:00\",\n  \"ownerId\": {{customerId}},\n  \"designId\": {{designId}}\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/scenes/{{sceneId1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"scenes",
+						"{{sceneId1}}"
+					]
+				},
+				"description": "Updates scene 1."
+			},
+			"response": []
+		},
+		{
+			"name": "13. Delete scene 2 (admin)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/scenes/{{sceneId2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"scenes",
+						"{{sceneId2}}"
+					]
+				},
+				"description": "Deletes scene 2."
+			},
+			"response": []
+		},
+		{
+			"name": "14. Delete design 2 (admin)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/designs/{{designId2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"designs",
+						"{{designId2}}"
+					]
+				},
+				"description": "Deletes design 2."
+			},
+			"response": []
+		},
+		{
+			"name": "15. Delete design 1 (admin)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/designs/{{designId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"designs",
+						"{{designId}}"
+					]
+				},
+				"description": "Deletes design 1."
+			},
+			"response": []
+		},
+		{
+			"name": "16. Delete asset (admin)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/assets/{{assetId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"assets",
+						"{{assetId}}"
+					]
+				},
+				"description": "Deletes the asset."
+			},
+			"response": []
+		},
+		{
+			"name": "17. Delete customer (admin)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/customers/{{customerId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customerId}}"
+					]
+				},
+				"description": "Deletes the customer user (admin action)."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081"
+		},
+		{
+			"key": "customerId",
+			"value": ""
+		},
+		{
+			"key": "assetId",
+			"value": ""
+		},
+		{
+			"key": "designId",
+			"value": ""
+		},
+		{
+			"key": "designId2",
+			"value": ""
+		},
+		{
+			"key": "sceneId1",
+			"value": ""
+		},
+		{
+			"key": "sceneId2",
+			"value": ""
+		}
+	]
+}

@@ -24,4 +24,7 @@ public class DesignRequestDTO {
 
     @NotNull(message = "Asset reference is required")
     private Long assetId;
+
+    @NotNull(message = "Owner is required")
+    private Long ownerId;
 }

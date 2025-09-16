@@ -20,7 +20,9 @@ import lombok.*;
  * - asset: Base asset being customized (1:1).
  */
 @Entity
-@Table(name = "designs")
+@Table(name = "designs",
+        uniqueConstraints = @UniqueConstraint(columnNames = { "asset_id", "owner_id" })
+)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -50,9 +52,14 @@ public class Design {
     @Lob
     private String textConfigJson;
 
-    // Relation: base asset being customized (1:1)
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "asset_id", nullable = false, unique = true)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "owner_id", nullable = false)
+    @NotNull(message = "Owner is required")
+    private Customer owner;
+
+    // Relation: base asset being customized (0:1)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "asset_id", nullable = false)
     @NotNull(message = "Asset reference is required")
     private Asset asset;
 }
