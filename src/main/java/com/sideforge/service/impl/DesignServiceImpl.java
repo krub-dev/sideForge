@@ -18,11 +18,13 @@ public class DesignServiceImpl implements DesignService {
 
     private final DesignRepository designRepository;
     private final AssetRepository assetRepository;
+    private final CustomerRepository customerRepository; // <-- NUEVO
 
     @Autowired
-    public DesignServiceImpl(DesignRepository designRepository, AssetRepository assetRepository) {
+    public DesignServiceImpl(DesignRepository designRepository, AssetRepository assetRepository, CustomerRepository customerRepository) {
         this.designRepository = designRepository;
         this.assetRepository = assetRepository;
+        this.customerRepository = customerRepository;
     }
 
     // Create a new design
@@ -31,6 +33,8 @@ public class DesignServiceImpl implements DesignService {
     public DesignResponseDTO createDesign(DesignRequestDTO dto) {
         Asset asset = assetRepository.findById(dto.getAssetId())
                 .orElseThrow(() -> new ResourceNotFoundException("Asset not found: " + dto.getAssetId()));
+        Customer owner = customerRepository.findById(dto.getOwnerId())
+                .orElseThrow(() -> new ResourceNotFoundException("Owner not found: " + dto.getOwnerId()));
         Design design = Design.builder()
                 .name(dto.getName())
                 .textureMapUrl(dto.getTextureMapUrl())
@@ -39,6 +43,7 @@ public class DesignServiceImpl implements DesignService {
                 .logoConfigJson(dto.getLogoConfigJson())
                 .textConfigJson(dto.getTextConfigJson())
                 .asset(asset)
+                .owner(owner)   // <-- ASIGNACIÓN CLAVE
                 .build();
         Design saved = designRepository.save(design);
         return toResponseDTO(saved);

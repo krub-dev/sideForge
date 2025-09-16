@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * Represents the base 3D asset (t-shirt, mug, etc.).
  * ----------------------------------------------------------------
@@ -42,7 +44,7 @@ public class Asset {
     @Lob
     private String partsConfigJson;
 
-    // Relation: Unique base design associated with the asset (OneToOne)
-    @OneToOne(mappedBy = "asset")
-    private Design design;
+    // Relation: Design associated with the asset (OneToMany)
+    @OneToMany(mappedBy = "asset")
+    private List<Design> designs;
 }

@@ -6,6 +6,8 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 /**
  * Customer entity representing an end user of the system.
  * Inherits from User.
@@ -28,4 +30,7 @@ public class Customer extends User {
     private PreferredLanguage preferredLanguage;
 
     private Boolean isVerified;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Design> designs;
 }

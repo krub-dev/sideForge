@@ -98,7 +98,7 @@ public class DataLoader implements CommandLineRunner {
             asset2.setPartsConfigJson("{\"size\":\"M\",\"color\":\"black\"}");
             assetRepository.save(asset2);
 
-            // Design 1 linked to asset1
+            // Design 1 linked to asset1 and customer1
             Design design1 = new Design();
             design1.setName("Modernist Mug");
             design1.setTextureMapUrl("/textures/mug-modernist.png");
@@ -107,9 +107,10 @@ public class DataLoader implements CommandLineRunner {
             design1.setLogoConfigJson("{\"logo\":\"/logos/modern.png\"}");
             design1.setTextConfigJson("{\"text\":\"Hello Mug\"}");
             design1.setAsset(asset1);
+            design1.setOwner(customer1);
             designRepository.save(design1);
 
-            // Design 2 linked to asset2
+            // Design 2 linked to asset2 and customer2
             Design design2 = new Design();
             design2.setName("Urban T-Shirt");
             design2.setTextureMapUrl("/textures/tshirt-urban.png");
@@ -118,7 +119,9 @@ public class DataLoader implements CommandLineRunner {
             design2.setLogoConfigJson("{\"logo\":\"/logos/urban.png\"}");
             design2.setTextConfigJson("{\"text\":\"Urban Style\"}");
             design2.setAsset(asset2);
+            design2.setOwner(customer2);
             designRepository.save(design2);
+
 
             // Retrieve designs managed by JPA
             Design managedDesign1 = designRepository.findById(design1.getId()).orElseThrow();
