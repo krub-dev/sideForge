@@ -205,6 +205,50 @@ src/
 ---
 
 <details>
+<summary><strong>DTOs by Entity</strong></summary>
+
+-   **User**
+
+    -   **UserRequestDTO**: username, email, password, role (optional/admin)
+    -   **UserResponseDTO**: id, username, email, role
+    -   **UserUpdateDTO**: username, email, password, profileImageUrl, preferredLanguage, isVerified
+
+-   **Customer**
+
+    -   **CustomerRequestDTO**: username, email, password, profileImageUrl, preferredLanguage, isVerified
+    -   **CustomerResponseDTO**: id, username, email, profileImageUrl, preferredLanguage, isVerified
+    -   **CustomerUpdateDTO**: profileImageUrl, preferredLanguage, isVerified
+
+-   **Admin**
+
+    -   **AdminRequestDTO**: username, email, password, adminLevel, department, departmentImageUrl, lastLogin
+    -   **AdminResponseDTO**: id, username, email, adminLevel, department, departmentImageUrl, lastLogin
+    -   **AdminUpdateDTO**: adminLevel, department, departmentImageUrl, lastLogin
+
+-   **Asset**
+
+    -   **AssetRequestDTO**: name, description, glbPath, thumbnailDefault, partsConfigJson
+    -   **AssetResponseDTO**: id, name, description, glbPath, thumbnailDefault, partsConfigJson
+    -   **AssetUpdateDTO**: name, description, glbPath, thumbnailDefault, partsConfigJson
+
+-   **Scene**
+
+    -   **SceneRequestDTO**: name, lightingConfigJson, cameraConfigJson, thumbnail, designId
+    -   **SceneResponseDTO**: id, name, lightingConfigJson, cameraConfigJson, thumbnail, createdAt, updatedAt, designId, ownerId
+    -   **SceneUpdateDTO**: name, lightingConfigJson, cameraConfigJson, thumbnail, designId
+
+-   **Design**
+    -   **DesignRequestDTO**: name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
+    -   **DesignResponseDTO**: id, name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
+    -   **DesignUpdateDTO**: name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
+
+---
+
+</details>
+
+---
+
+<details>
 <summary><strong>Enums</strong></summary>
 
 **Part** (customizable parts, per asset)
@@ -415,92 +459,6 @@ public enum Department {
 -   Postman (testing endpoints)
 -   Dbeaver (data base)
 -   JUnit & Mockito (testing)
-
----
-
-## Controllers and Routes structure
-
-### UserController (`/users`)
-
--   `POST /register` — Register a new user (Customer by default)
--   `POST /login` — User login (returns JWT)
--   `GET /profile` — Get authenticated user's profile
--   `PUT /profile` — Update authenticated user's profile
--   `GET /` — List all users (admin only)
--   `GET /{id}` — Get user by ID (admin only)
--   `PUT /{id}` — Update user by ID (admin only)
--   `DELETE /{id}` — Delete user by ID (admin/self)
--   `GET /me/scenes` — List authenticated user's scenes
--   `GET /me/designs` — List authenticated user's designs
-
-### AssetController (`/assets`)
-
--   `GET /` — List all assets
--   `GET /{id}` — Get asset by ID
--   `POST /` — Create asset (admin only)
--   `PUT /{id}` — Update asset (admin only)
--   `DELETE /{id}` — Delete asset (admin only)
--   `GET /{id}/designs` — List all designs for an asset
-
-### SceneController (`/scenes`)
-
--   `GET /` — List all scenes (admin) or user's scenes (customer)
--   `GET /{id}` — Get scene by ID (owner or admin)
--   `POST /` — Create new scene (authenticated)
--   `PUT /{id}` — Update scene (owner or admin)
--   `DELETE /{id}` — Delete scene (owner or admin)
-
-### DesignController (`/designs`)
-
--   `GET /` — List all designs (admin) or user's designs (customer)
--   `GET /{id}` — Get design by ID (owner or admin)
--   `POST /` — Create new design (authenticated)
--   `PUT /{id}` — Update design (owner or admin)
--   `DELETE /{id}` — Delete design (owner or admin)
-
----
-
-<details>
-<summary><strong>DTOs by Entity</strong></summary>
-
--   **User**
-
-    -   **UserRequestDTO**: username, email, password, role (optional/admin)
-    -   **UserResponseDTO**: id, username, email, role
-    -   **UserUpdateDTO**: username, email, password, profileImageUrl, preferredLanguage, isVerified
-
--   **Customer**
-
-    -   **CustomerRequestDTO**: username, email, password, profileImageUrl, preferredLanguage, isVerified
-    -   **CustomerResponseDTO**: id, username, email, profileImageUrl, preferredLanguage, isVerified
-    -   **CustomerUpdateDTO**: profileImageUrl, preferredLanguage, isVerified
-
--   **Admin**
-
-    -   **AdminRequestDTO**: username, email, password, adminLevel, department, departmentImageUrl, lastLogin
-    -   **AdminResponseDTO**: id, username, email, adminLevel, department, departmentImageUrl, lastLogin
-    -   **AdminUpdateDTO**: adminLevel, department, departmentImageUrl, lastLogin
-
--   **Asset**
-
-    -   **AssetRequestDTO**: name, description, glbPath, thumbnailDefault, partsConfigJson
-    -   **AssetResponseDTO**: id, name, description, glbPath, thumbnailDefault, partsConfigJson
-    -   **AssetUpdateDTO**: name, description, glbPath, thumbnailDefault, partsConfigJson
-
--   **Scene**
-
-    -   **SceneRequestDTO**: name, lightingConfigJson, cameraConfigJson, thumbnail, designId
-    -   **SceneResponseDTO**: id, name, lightingConfigJson, cameraConfigJson, thumbnail, createdAt, updatedAt, designId, ownerId
-    -   **SceneUpdateDTO**: name, lightingConfigJson, cameraConfigJson, thumbnail, designId
-
--   **Design**
-    -   **DesignRequestDTO**: name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
-    -   **DesignResponseDTO**: id, name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
-    -   **DesignUpdateDTO**: name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
-
----
-
-</details>
 
 ---
 
