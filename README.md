@@ -532,9 +532,8 @@ public enum Department {
 -   **Scalability & Extensibility:** The architecture is designed to allow easy addition of new asset types, customization features, or integrations (e.g., payment, analytics, external 3D services) with minimal impact on existing code.
 
 ---
-
 👤 Developer
 
-GitHub: @krub-dev
-LinkedIn: Kiko Rubio Illán
-Portfolio: krub.dev
+- GitHub: [@krub-dev](https://github.com/krub-dev)
+- LinkedIn: [Kiko Rubio Illán](https://www.linkedin.com/in/kiko-rubio-illan/)
+- Portfolio: [krub.dev](https://krub.dev)
