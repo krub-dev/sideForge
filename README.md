@@ -531,66 +531,10 @@ public enum Department {
 -   **Decoupled databases:** Consider an independent database for each microservice.
 -   **Scalability & Extensibility:** The architecture is designed to allow easy addition of new asset types, customization features, or integrations (e.g., payment, analytics, external 3D services) with minimal impact on existing code.
 
-    -   **UserUpdateDTO**: username, email, password, profileImageUrl, preferredLanguage, isVerified
-
--   **Customer**
-
-    -   **CustomerRequestDTO**: username, email, password, profileImageUrl, preferredLanguage, isVerified
-    -   **CustomerResponseDTO**: id, username, email, profileImageUrl, preferredLanguage, isVerified
-    -   **CustomerUpdateDTO**: profileImageUrl, preferredLanguage, isVerified
-
--   **Admin**
-
-    -   **AdminRequestDTO**: username, email, password, adminLevel, department, departmentImageUrl, lastLogin
-    -   **AdminResponseDTO**: id, username, email, adminLevel, department, departmentImageUrl, lastLogin
-    -   **AdminUpdateDTO**: adminLevel, department, departmentImageUrl, lastLogin
-
--   **Asset**
-
-    -   **AssetRequestDTO**: name, description, glbPath, thumbnailDefault, partsConfigJson
-    -   **AssetResponseDTO**: id, name, description, glbPath, thumbnailDefault, partsConfigJson
-    -   **AssetUpdateDTO**: name, description, glbPath, thumbnailDefault, partsConfigJson
-
--   **Scene**
-
-    -   **SceneRequestDTO**: name, lightingConfigJson, cameraConfigJson, thumbnail, designId
-    -   **SceneResponseDTO**: id, name, lightingConfigJson, cameraConfigJson, thumbnail, createdAt, updatedAt, designId, ownerId
-    -   **SceneUpdateDTO**: name, lightingConfigJson, cameraConfigJson, thumbnail, designId
-
--   **Design**
-    -   **DesignRequestDTO**: name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
-    -   **DesignResponseDTO**: id, name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
-    -   **DesignUpdateDTO**: name, textureMapUrl, materialsJson, partsColorsJson, logoConfigJson, textConfigJson, assetId
-
 ---
 
-</details>
+👤 Developer
 
----
-
-## Resources
-
--   **Kanban Board:** [Kanban's link](https://github.com/users/krub-dev/projects/2)
--   **Presentation Slides:** [Presentation's link]()
--   **API Docs (Swagger):** `/swagger-ui.html`
-
----
-
-## Future Work
-
--   JWT authentication implemented.
--   Cloud image storage.
--   Design versioning.
--   Admin panel.
--   3D integration (Babylon.js or Three.js, TBD).
--   Framework front (Vue.js or React, TBD).
--   Docker for deployment.
--   Possible microservices refactor (users/auth and main logic separated with Eureka).
-
----
-
-## Architecture Considerations
-
--   **Domain separation:** The system may be split into two microservices: one for users/authentication (with Eureka Service Discovery) and another for main logic (assets, scenes, designs).
--   **Decoupled databases:** Consider an independent database for each microservice.
--   **Scalability & Extensibility:** The architecture is designed to allow easy addition of new asset types, customization features, or integrations (e.g., payment, analytics, external 3D services) with minimal impact on existing code.
+GitHub: @krub-dev
+LinkedIn: Kiko Rubio Illán
+Portfolio: krub.dev
